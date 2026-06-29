@@ -193,3 +193,10 @@ async function loadLeaderboard() {
     console.error(err);
   }
 }
+
+setInterval(() => {
+  if (activePanel && activePanel.id === 'panel-leaderboard') {
+    lbLoaded = false;
+    loadLeaderboard();
+  }
+}, 10 * 60 * 1000);
