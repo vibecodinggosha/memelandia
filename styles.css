@@ -33,33 +33,35 @@ a { text-decoration: none; color: inherit; }
   display: none;
   position: fixed;
   inset: 0;
-  z-index: 9000;
-  /* map.jpeg as background, darkened by gradient layer on top */
-  background-color: #888;
-  background-image:
-    linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.45)),
-    url('map.jpeg');
-  background-size: 100% 100%, auto 44%;
-  background-position: 0 0, center 18%;
-  background-repeat: no-repeat, no-repeat;
+  z-index: 9999;
+  background: #808080;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  padding: 24px 16px 40px;
+  justify-content: flex-start;
+  padding-top: 14vh;
 }
 .portrait-overlay.visible { display: flex; }
+
+/* Island image — dimmed to match reference */
+.overlay-island {
+  width: 90%;
+  max-width: 520px;
+  height: auto;
+  display: block;
+  filter: brightness(0.62);
+  margin-bottom: 4px;
+}
 
 .rotate-ui {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 20px;
-  margin-top: 20vh; /* push below the map area */
+  gap: 14px;
 }
 
 .rotate-svg {
-  width: 160px;
-  height: 185px;
+  width: 150px;
+  height: 172px;
 }
 
 /* Phone rotates portrait → landscape → portrait */
