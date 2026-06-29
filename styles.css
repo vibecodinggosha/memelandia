@@ -42,11 +42,12 @@ a { text-decoration: none; color: inherit; }
 }
 .portrait-overlay.visible { display: flex; }
 
-/* Island image — dimmed to match reference */
+/* Island image — fills width, fixed height, cropped to island center */
 .overlay-island {
-  width: 90%;
-  max-width: 520px;
-  height: auto;
+  width: 100%;
+  height: 40vh;
+  object-fit: cover;
+  object-position: center center;
   display: block;
   filter: brightness(0.62);
   margin-bottom: 4px;
