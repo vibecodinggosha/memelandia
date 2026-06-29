@@ -172,10 +172,14 @@ async function loadLeaderboard() {
       const candles = ohlcvResults[i]?.data?.attributes?.ohlcv_list;
       const vol7d   = candles
         ? candles.reduce((s, c) => s + (parseFloat(c[5]) || 0), 0)
-        : parseFloat(attr.volume_usd?.h24 || 0) * 7; // fallback
+        : parseFloat(attr.volume_usd?.h24 || 0) * 7;
 
-      const holders = holderResults[i]?.holders_count || 0;
-      return { name, mcap, vol7d, holders };
+      const hData   = holderResults[i];
+      const holders = hData?.holders_count || 0;
+      let logo      = hData?.metadata?.image || '';
+      if (logo.startsWith('ipfs://')) logo = 'https://ipfs.io/ipfs/' + logo.slice(7);
+
+      return { name, mcap, vol7d, holders, logo };
     });
 
     const maxMcap    = Math.max(...rows.map(r => r.mcap),    1);
@@ -194,9 +198,13 @@ async function loadLeaderboard() {
       const label = rank === 1 ? '🥇' : rank === 2 ? '🥈' : rank === 3 ? '🥉' : `#${rank}`;
       const pct   = r.score.toFixed(1);
       const meta  = `MCAP $${fmt(r.mcap)} · VOL 7D $${fmt(r.vol7d)} · HOLDERS ${fmt(r.holders)}`;
+      const logoHtml = r.logo
+        ? `<img class="lb-logo" src="${r.logo}" alt="" onerror="this.style.display='none'" />`
+        : `<div class="lb-logo"></div>`;
       return `
         <div class="lb-item">
           <div class="lb-rank ${cls}">${label}</div>
+          ${logoHtml}
           <div class="lb-info">
             <div class="lb-name">${r.name}</div>
             <div class="lb-meta">${meta}</div>
