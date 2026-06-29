@@ -16,16 +16,17 @@
        Shown in portrait, hidden in landscape
        ===================================================== -->
   <div class="portrait-overlay" id="portraitOverlay">
+    <img src="map.jpeg" alt="" class="overlay-island" />
     <div class="rotate-ui">
       <svg class="rotate-svg" viewBox="0 0 200 230" fill="none" xmlns="http://www.w3.org/2000/svg">
         <defs>
           <marker id="ar" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto">
-            <path d="M 0 1 L 8 5 L 0 9" stroke="rgba(255,255,255,0.7)" stroke-width="2.2" fill="none"
+            <path d="M 0 1 L 8 5 L 0 9" stroke="rgba(255,255,255,0.55)" stroke-width="2.2" fill="none"
                   stroke-linecap="round" stroke-linejoin="round"/>
           </marker>
         </defs>
 
-        <!-- Phone — starts portrait, CSS animates it rotating to landscape -->
+        <!-- Phone — portrait orientation, animates to landscape -->
         <g class="phone-anim">
           <rect x="62" y="24" width="76" height="132" rx="14"
                 stroke="white" stroke-width="3.5" fill="none"/>
@@ -34,7 +35,7 @@
 
         <!-- Bottom rotation arc -->
         <path d="M 28 192 A 72 26 0 0 0 172 192"
-              stroke="rgba(255,255,255,0.6)" stroke-width="3" stroke-linecap="round"
+              stroke="rgba(255,255,255,0.45)" stroke-width="3" stroke-linecap="round"
               marker-end="url(#ar)"/>
       </svg>
 
