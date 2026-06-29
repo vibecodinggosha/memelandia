@@ -1,13 +1,31 @@
 /* ==========================================
-   BOOK OF ZHGUN — Panel / Hotspot Logic
+   ZHGUNLANDIA — Panel / Hotspot Logic
    ========================================== */
 
-const overlay = document.getElementById('overlay');
-let activePanel = null;
+const overlay    = document.getElementById('overlay');
+const rotateScr  = document.getElementById('rotateScreen');
+let activePanel   = null;
 let activeHotspot = null;
 
+/* ---------- orientation check ---------- */
+function checkOrientation() {
+  const isMobile = window.innerWidth <= 900 || window.innerHeight <= 900;
+  const isPortrait = window.innerHeight > window.innerWidth;
+  if (isMobile && isPortrait) {
+    rotateScr.style.display = 'flex';
+    // close any open panel when rotated back to portrait
+    closeAll();
+  } else {
+    rotateScr.style.display = 'none';
+  }
+}
+
+window.addEventListener('resize',           checkOrientation, { passive: true });
+window.addEventListener('orientationchange', checkOrientation, { passive: true });
+checkOrientation(); // run on load
+
+/* ---------- panel logic ---------- */
 function openPanel(panelId, hotspot) {
-  // close current if any
   if (activePanel) {
     activePanel.classList.remove('open');
     if (activeHotspot) activeHotspot.classList.remove('active');
@@ -20,25 +38,18 @@ function openPanel(panelId, hotspot) {
   overlay.classList.add('show');
   hotspot.classList.add('active');
 
-  activePanel = panel;
+  activePanel   = panel;
   activeHotspot = hotspot;
   document.body.style.overflow = 'hidden';
 }
 
 function closeAll() {
-  if (activePanel) {
-    activePanel.classList.remove('open');
-    activePanel = null;
-  }
-  if (activeHotspot) {
-    activeHotspot.classList.remove('active');
-    activeHotspot = null;
-  }
+  if (activePanel)   { activePanel.classList.remove('open'); activePanel = null; }
+  if (activeHotspot) { activeHotspot.classList.remove('active'); activeHotspot = null; }
   overlay.classList.remove('show');
   document.body.style.overflow = '';
 }
 
-// Hotspot clicks
 document.querySelectorAll('.hotspot').forEach(btn => {
   btn.addEventListener('click', e => {
     e.stopPropagation();
@@ -51,15 +62,12 @@ document.querySelectorAll('.hotspot').forEach(btn => {
   });
 });
 
-// Close buttons inside panels
 document.querySelectorAll('.panel__close').forEach(btn => {
   btn.addEventListener('click', closeAll);
 });
 
-// Overlay click
 overlay.addEventListener('click', closeAll);
 
-// Escape key
 document.addEventListener('keydown', e => {
   if (e.key === 'Escape') closeAll();
 });
