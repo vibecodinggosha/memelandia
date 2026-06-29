@@ -244,7 +244,7 @@ a { text-decoration: none; color: inherit; }
 .panel {
   position: fixed;
   top: 0; right: 0;
-  width: min(560px, 100vw);
+  width: 100vw;
   height: 100dvh;
   background: #fff;
   z-index: 400;
