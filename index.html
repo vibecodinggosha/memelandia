@@ -11,7 +11,51 @@
 </head>
 <body>
 
-  <!-- ======== NAVBAR ======== -->
+  <!-- =====================================================
+       PORTRAIT OVERLAY — full grey screen with island + rotate icon
+       Shown in portrait, hidden in landscape
+       ===================================================== -->
+  <div class="portrait-overlay" id="portraitOverlay">
+    <img src="map.jpeg" alt="ZHGUNLANDIA Map" class="overlay-island" />
+
+    <div class="rotate-ui">
+      <!-- Phone in landscape with circular rotation arrows -->
+      <svg class="rotate-svg" viewBox="0 0 200 190" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <marker id="aw" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto">
+            <path d="M 0 1 L 10 6 L 0 11" stroke="white" stroke-width="2.2" fill="none"
+                  stroke-linecap="round" stroke-linejoin="round"/>
+          </marker>
+          <marker id="ad" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto">
+            <path d="M 0 1 L 10 6 L 0 11" stroke="rgba(255,255,255,0.42)" stroke-width="2.2" fill="none"
+                  stroke-linecap="round" stroke-linejoin="round"/>
+          </marker>
+        </defs>
+
+        <!-- Top arc — white, sweeps over the top of the phone -->
+        <path d="M 12 95 A 88 88 0 0 0 188 95"
+              stroke="white" stroke-width="3" stroke-linecap="round"
+              marker-end="url(#aw)"/>
+
+        <!-- Phone body in landscape -->
+        <rect x="37" y="57" width="126" height="76" rx="14"
+              stroke="white" stroke-width="3.5" fill="none"/>
+        <!-- Camera / button dot on left -->
+        <circle cx="57" cy="95" r="7" fill="white"/>
+
+        <!-- Bottom arc — dim, sweeps under the phone -->
+        <path d="M 188 95 A 88 88 0 0 1 12 95"
+              stroke="rgba(255,255,255,0.4)" stroke-width="3" stroke-linecap="round"
+              marker-end="url(#ad)"/>
+      </svg>
+
+      <p class="rotate-text">FLIP TO ROTATE</p>
+    </div>
+  </div>
+
+  <!-- =====================================================
+       LANDSCAPE SITE — normal page, hidden in portrait
+       ===================================================== -->
   <header class="navbar">
     <div class="navbar__logo">ZHGUNLANDIA</div>
     <nav class="navbar__links">
@@ -22,10 +66,7 @@
     <a href="https://dexscreener.com" target="_blank" rel="noopener" class="nav-buy">BUY $ZHGUN</a>
   </header>
 
-  <!-- ======== SITE WRAP ======== -->
   <div class="site-wrap">
-
-    <!-- MAP -->
     <section class="map-section">
       <div class="map-wrap">
         <img src="map.jpeg" alt="ZHGUNLANDIA Map" class="map-img" draggable="false" />
@@ -43,27 +84,12 @@
         <button class="hotspot" style="left:82%;top:62%"  data-panel="dexs"        aria-label="DEXs"></button>
       </div>
     </section>
-
-    <!-- ROTATE PROMPT (portrait mobile only) -->
-    <section class="rotate-section">
-      <!-- Phone SVG drawn in portrait, CSS rotates it to landscape -->
-      <div class="rotate-icon">
-        <svg class="phone-svg" viewBox="0 0 60 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <rect x="4" y="4" width="52" height="92" rx="9" stroke="white" stroke-width="3"/>
-          <circle cx="30" cy="88" r="4.5" fill="white"/>
-          <rect x="20" y="12" width="20" height="3" rx="1.5" fill="rgba(255,255,255,0.4)"/>
-        </svg>
-      </div>
-      <p class="rotate-text">FLIP TO ROTATE</p>
-    </section>
-
-  </div><!-- /site-wrap -->
+  </div>
 
   <!-- ======== OVERLAY ======== -->
   <div class="overlay" id="overlay"></div>
 
   <!-- ======== PANELS ======== -->
-
   <div class="panel" id="panel-community">
     <button class="panel__close" aria-label="Close">✕</button>
     <h2 class="panel__title">JOIN THE <span class="rainbow">MEME MOVEMENT</span> 🔥</h2>
@@ -149,7 +175,6 @@
     <p>CHOOSE YOUR LAUNCH PARTNER AND BRING YOUR MEME TO LIFE.</p>
     <p>NAME IT. PICK YOUR $TICKER. ADD YOUR STORY AND VISUAL. PAY THE DEPLOYMENT FEE — AND BOOM, YOUR TOKEN IS LIVE!</p>
     <p>UNTIL YOUR MEME REACHES ITS FIRST MARKET-CAP MILESTONE, IT'LL LIVE EXCLUSIVELY INSIDE YOUR CHOSEN LAUNCHPAD.</p>
-    <p>NEED HELP? CHECK THE IN-APP GUIDE ANYTIME.</p>
     <div class="panel__label">SELECT A LAUNCHPAD:</div>
     <div class="panel__group">
       <a href="https://t.me/tonmeme_bot" target="_blank" rel="noopener" class="pill-btn">TON MEME</a>
@@ -171,7 +196,7 @@
       <a href="https://t.me/pocketfi_bot" target="_blank" rel="noopener" class="pill-btn">POCKETFI</a>
       <a href="https://t.me/Ave_ai_bot" target="_blank" rel="noopener" class="pill-btn">AVEAI</a>
     </div>
-    <p>COMPARE PRICES, VOLUMES, AND CHART YOUR NEXT 100X. SOME TOKENS MIGHT NOT BE PART OF ZHGUNLANDIA YET, SO ALWAYS DYOR.</p>
+    <p>COMPARE PRICES, VOLUMES, AND CHART YOUR NEXT 100X. ALWAYS DYOR.</p>
     <div class="panel__group">
       <a href="https://dexscreener.com" target="_blank" rel="noopener" class="pill-btn">VIEW LEADERBOARD</a>
     </div>
@@ -196,9 +221,7 @@
     <button class="panel__close" aria-label="Close">✕</button>
     <h2 class="panel__title"><span class="rainbow">DIVE IN</span> &amp; EARN 💧</h2>
     <p>PROVIDE LIQUIDITY TO YOUR FAVORITE MEMECOINS AND EARN A SHARE OF EVERY TRADE.</p>
-    <p>ADD EQUAL AMOUNTS OF YOUR CHOSEN MEMECOIN AND TON ON A DEX BELOW, AND START EARNING FROM THE TRADING VOLUME.</p>
-    <p>IF YOU ARE FAMILIAR WITH LIQUIDITY POOLS — DIVE RIGHT IN!</p>
-    <p>IF NOT, MAKE SURE YOU UNDERSTAND HOW DEXS WORK BEFORE TAKING THE PLUNGE.</p>
+    <p>ADD EQUAL AMOUNTS OF YOUR CHOSEN MEMECOIN AND TON ON A DEX BELOW.</p>
     <div class="panel__label">DEX OPTIONS:</div>
     <div class="panel__group">
       <a href="https://ston.fi" target="_blank" rel="noopener" class="pill-btn">STON.FI</a>
