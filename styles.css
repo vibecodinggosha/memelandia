@@ -1,98 +1,31 @@
 /* ==========================================
-   ZHGUNLANDIA — exact MemeRepublic style
+   ZHGUNLANDIA — MemeRepublic style
    ========================================== */
 
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-:root {
-  --black:  #111111;
-  --white:  #ffffff;
-  --grey:   #888888;
-  --nav-h:  60px;
+html, body {
+  width: 100%;
+  overflow-x: hidden;
 }
-
-html { scroll-behavior: smooth; }
 
 body {
   font-family: 'Space Mono', 'Courier New', monospace;
-  background: var(--white);
-  color: var(--black);
-  overflow-x: hidden;
+  background: #fff;
+  color: #111;
 }
 
 a { text-decoration: none; color: inherit; }
 
-/* ========== RAINBOW GRADIENT ========== */
+/* ========== RAINBOW ========== */
 .rainbow {
-  background: linear-gradient(
-    90deg,
-    #6ee86e 0%,
-    #4dd9c0 18%,
-    #4db8ff 34%,
-    #a855f7 50%,
-    #f472b6 66%,
-    #fb923c 82%,
-    #facc15 100%
+  background: linear-gradient(90deg,
+    #6ee86e 0%, #4dd9c0 18%, #4db8ff 34%,
+    #a855f7 50%, #f472b6 66%, #fb923c 82%, #facc15 100%
   );
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
-}
-
-/* ========== ROTATE SCREEN ========== */
-/*
-  Shows ONLY on mobile portrait.
-  Covers the whole viewport with grey + animation + text.
-*/
-.rotate-screen {
-  display: none; /* hidden by default (desktop / landscape) */
-  position: fixed;
-  inset: 0;
-  z-index: 9999;
-  background: var(--grey);
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 40px;
-}
-
-/* Phone SVG wrapper */
-.rotate-icon {
-  width: 120px;
-  height: 120px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.phone-svg {
-  width: 100px;
-  height: 100px;
-  /* start portrait, animate to landscape */
-  animation: rotatePhone 1.8s ease-in-out infinite;
-  transform-origin: center;
-}
-
-@keyframes rotatePhone {
-  0%   { transform: rotate(0deg);   opacity: 1; }
-  40%  { transform: rotate(-90deg); opacity: 1; }
-  70%  { transform: rotate(-90deg); opacity: 1; }
-  85%  { transform: rotate(0deg);   opacity: 0.7; }
-  100% { transform: rotate(0deg);   opacity: 1; }
-}
-
-.rotate-text {
-  font-family: 'Space Mono', 'Courier New', monospace;
-  font-size: 0.85rem;
-  font-weight: 700;
-  letter-spacing: 0.18em;
-  color: var(--white);
-  text-transform: uppercase;
-}
-
-/* Show rotate screen only on mobile portrait */
-@media (max-width: 900px) and (orientation: portrait) {
-  .rotate-screen { display: flex; }
 }
 
 /* ========== NAVBAR ========== */
@@ -100,57 +33,62 @@ a { text-decoration: none; color: inherit; }
   position: fixed;
   top: 0; left: 0; right: 0;
   z-index: 200;
-  height: var(--nav-h);
-  background: var(--white);
+  height: 60px;
+  background: #fff;
   border-bottom: 1.5px solid #e5e5e5;
   display: flex;
   align-items: center;
-  padding: 0 28px;
-  gap: 32px;
+  padding: 0 24px;
+  gap: 24px;
 }
 
 .navbar__logo {
   font-family: 'Inter', sans-serif;
   font-weight: 900;
-  font-size: 1rem;
+  font-size: 0.95rem;
   letter-spacing: 0.06em;
-  white-space: nowrap;
 }
 
 .navbar__links {
   display: flex;
-  gap: 28px;
+  gap: 24px;
   margin-left: auto;
 }
 
 .navbar__links a {
-  font-family: 'Space Mono', monospace;
-  font-size: 0.75rem;
+  font-size: 0.72rem;
   font-weight: 700;
   letter-spacing: 0.08em;
-  color: #555;
+  color: #666;
   transition: color 0.15s;
 }
-.navbar__links a:hover { color: var(--black); }
+.navbar__links a:hover { color: #111; }
 
 .nav-buy {
-  font-family: 'Space Mono', monospace;
   font-weight: 700;
-  font-size: 0.75rem;
+  font-size: 0.72rem;
   letter-spacing: 0.08em;
-  background: var(--black);
-  color: var(--white);
+  background: #111;
+  color: #fff;
   border-radius: 50px;
-  padding: 9px 20px;
+  padding: 9px 18px;
   white-space: nowrap;
   transition: opacity 0.15s;
 }
 .nav-buy:hover { opacity: 0.75; }
 
+/* ========== SITE WRAP ========== */
+.site-wrap {
+  padding-top: 60px;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
 /* ========== MAP SECTION ========== */
 .map-section {
-  padding-top: var(--nav-h);
-  background: var(--white);
+  width: 100%;
+  flex-shrink: 0;
 }
 
 .map-wrap {
@@ -164,49 +102,139 @@ a { text-decoration: none; color: inherit; }
   height: auto;
   display: block;
   image-rendering: -webkit-optimize-contrast;
-  -webkit-transform: translateZ(0);
-  transform: translateZ(0);
 }
 
-/* ========== HOTSPOT BUTTONS ========== */
+/* ========== HOTSPOTS — smaller + transparent ========== */
 .hotspot {
   position: absolute;
   transform: translate(-50%, -50%);
-  width: 28px;
-  height: 28px;
+  width: 22px;
+  height: 22px;
   border-radius: 50%;
-  background: rgba(0, 0, 0, 0.55);
-  border: 2px solid rgba(255, 255, 255, 0.85);
-  color: var(--white);
-  font-size: 1.1rem;
-  font-weight: 900;
+  background: rgba(0, 0, 0, 0.42);
+  border: 1.5px solid rgba(255, 255, 255, 0.75);
+  color: #fff;
+  font-size: 0.95rem;
+  font-weight: 700;
   line-height: 1;
   cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
   transition: transform 0.2s, background 0.2s;
-  box-shadow: 0 1px 6px rgba(0,0,0,0.25);
+  box-shadow: 0 1px 4px rgba(0,0,0,0.18);
   z-index: 10;
-  /* slightly transparent so characters show through */
-  backdrop-filter: blur(1px);
 }
 .hotspot::before { content: '+'; }
 .hotspot:hover {
-  transform: translate(-50%, -50%) scale(1.2);
-  background: rgba(0, 0, 0, 0.8);
-}
-.hotspot.active {
-  background: rgba(0, 0, 0, 0.85);
+  transform: translate(-50%, -50%) scale(1.25);
+  background: rgba(0, 0, 0, 0.72);
 }
 .hotspot.active::before { content: '–'; }
+.hotspot.active { background: rgba(0, 0, 0, 0.8); }
+
+/* ========== ROTATE SECTION ========== */
+/* Hidden on desktop, shown on portrait mobile as grey block */
+.rotate-section {
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 36px;
+  background: #888888;
+  flex: 1;          /* fills remaining viewport height after map */
+  min-height: 200px;
+}
+
+/* ========== PHONE SVG ANIMATION ========== */
+.rotate-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Phone is drawn in portrait; CSS rotates it to landscape */
+.phone-svg {
+  width: 70px;
+  height: 70px;
+  animation: phoneRotate 2s ease-in-out infinite;
+  transform-origin: center center;
+  /* start already in landscape by default transform */
+  transform: rotate(-90deg);
+}
+
+@keyframes phoneRotate {
+  0%   { transform: rotate(0deg); }    /* portrait */
+  35%  { transform: rotate(-90deg); }  /* lands in landscape */
+  65%  { transform: rotate(-90deg); }  /* holds landscape */
+  85%  { transform: rotate(0deg); }    /* snaps back */
+  100% { transform: rotate(0deg); }    /* portrait again */
+}
+
+.rotate-text {
+  font-family: 'Space Mono', monospace;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.22em;
+  color: #fff;
+  text-transform: uppercase;
+}
+
+/* ========== MOBILE PORTRAIT: show rotate section ========== */
+@media (max-width: 1024px) and (orientation: portrait) {
+  .site-wrap {
+    height: 100vh;
+    overflow: hidden;
+  }
+  .rotate-section {
+    display: flex;
+  }
+}
+
+/* ========== MOBILE LANDSCAPE: map fills full screen ========== */
+@media (orientation: landscape) and (max-height: 600px) {
+  .site-wrap {
+    height: 100vh;
+    overflow: hidden;
+    padding-top: 48px;
+  }
+  .navbar {
+    height: 48px;
+  }
+  .map-section {
+    flex: 1;
+    overflow: hidden;
+    display: flex;
+    align-items: flex-start;
+  }
+  .map-wrap {
+    width: 100%;
+    height: 100%;
+  }
+  .map-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    /* shift image up slightly to focus on islands, not sky */
+    object-position: center 22%;
+  }
+  .rotate-section {
+    display: none !important;
+  }
+  /* Hotspots slightly bigger in landscape for touch targets */
+  .hotspot {
+    width: 20px;
+    height: 20px;
+    font-size: 0.85rem;
+  }
+}
 
 /* ========== OVERLAY ========== */
 .overlay {
   display: none;
   position: fixed;
   inset: 0;
-  background: rgba(0,0,0,0.3);
+  background: rgba(0,0,0,0.28);
   z-index: 300;
   cursor: pointer;
 }
@@ -215,119 +243,92 @@ a { text-decoration: none; color: inherit; }
 /* ========== PANELS ========== */
 .panel {
   position: fixed;
-  top: 0;
-  right: 0;
+  top: 0; right: 0;
   width: min(560px, 100vw);
   height: 100dvh;
-  background: var(--white);
+  background: #fff;
   z-index: 400;
   overflow-y: auto;
-  padding: 52px 40px 64px;
+  padding: 52px 36px 60px;
   transform: translateX(100%);
-  transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: transform 0.32s cubic-bezier(0.4, 0, 0.2, 1);
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 18px;
 }
 .panel.open { transform: translateX(0); }
 
-/* Close button */
 .panel__close {
   position: absolute;
-  top: 20px;
-  right: 20px;
-  width: 40px;
-  height: 40px;
+  top: 18px; right: 18px;
+  width: 38px; height: 38px;
   border-radius: 50%;
-  background: var(--black);
-  color: var(--white);
+  background: #111;
+  color: #fff;
   border: none;
-  font-size: 1rem;
+  font-size: 0.9rem;
   cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
   transition: opacity 0.15s;
-  flex-shrink: 0;
 }
 .panel__close:hover { opacity: 0.7; }
 
-/* Panel title */
 .panel__title {
   font-family: 'Inter', sans-serif;
   font-weight: 900;
-  font-size: clamp(1.4rem, 4vw, 2rem);
+  font-size: clamp(1.3rem, 4vw, 1.9rem);
   line-height: 1.15;
-  color: var(--black);
-  margin-top: 8px;
-  padding-right: 52px;
+  padding-right: 48px;
+  margin-top: 6px;
 }
 
-/* Body paragraphs */
 .panel p {
   font-family: 'Space Mono', 'Courier New', monospace;
-  font-size: 0.78rem;
+  font-size: 0.76rem;
   line-height: 1.85;
   letter-spacing: 0.04em;
-  color: var(--black);
   text-transform: uppercase;
 }
 
-/* Label above buttons */
 .panel__label {
-  font-family: 'Space Mono', 'Courier New', monospace;
-  font-size: 0.72rem;
+  font-size: 0.7rem;
   font-weight: 700;
-  letter-spacing: 0.1em;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: var(--black);
-  margin-bottom: -8px;
+  margin-bottom: -6px;
 }
 
-/* Button group */
 .panel__group {
   display: flex;
   flex-wrap: wrap;
   gap: 10px;
 }
 
-/* Pill button */
 .pill-btn {
   display: inline-flex;
   align-items: center;
-  background: var(--black);
-  color: var(--white);
+  background: #111;
+  color: #fff;
   border-radius: 50px;
-  padding: 12px 22px;
-  font-family: 'Space Mono', 'Courier New', monospace;
+  padding: 12px 20px;
+  font-family: 'Space Mono', monospace;
   font-weight: 700;
-  font-size: 0.72rem;
+  font-size: 0.7rem;
   letter-spacing: 0.06em;
   text-transform: uppercase;
   white-space: nowrap;
   transition: opacity 0.15s, transform 0.15s;
   cursor: pointer;
 }
-.pill-btn:hover {
-  opacity: 0.75;
-  transform: translateY(-1px);
-}
+.pill-btn:hover { opacity: 0.72; transform: translateY(-1px); }
 
-/* Scrollbar */
-.panel::-webkit-scrollbar { width: 4px; }
-.panel::-webkit-scrollbar-track { background: transparent; }
-.panel::-webkit-scrollbar-thumb { background: #ddd; border-radius: 4px; }
+.panel::-webkit-scrollbar { width: 3px; }
+.panel::-webkit-scrollbar-thumb { background: #ddd; border-radius: 3px; }
 
-/* ========== RESPONSIVE ========== */
-@media (max-width: 640px) {
-  .navbar__links { display: none; }
-  .panel { padding: 44px 22px 52px; }
-  .panel__title { font-size: 1.3rem; }
-  .hotspot { width: 24px; height: 24px; font-size: 0.95rem; }
-}
-
-/* Landscape on small screens — hide rotate, show map normally */
-@media (max-width: 900px) and (orientation: landscape) {
-  .navbar { height: 48px; }
-  .map-section { padding-top: 48px; }
+/* ========== DESKTOP ========== */
+@media (min-width: 1025px) {
+  .rotate-section { display: none !important; }
+  .site-wrap { min-height: calc(100vh - 60px); }
 }
