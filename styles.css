@@ -43,15 +43,14 @@ a { text-decoration: none; color: inherit; }
 }
 .portrait-overlay.visible { display: flex; }
 
-/* Island image — narrower, centered */
+/* Island image — full width, shorter along Y */
 .overlay-island {
-  width: 86%;
-  height: 42vh;
+  width: 100%;
+  height: 36vh;
   object-fit: cover;
   object-position: center center;
   display: block;
   filter: brightness(0.62);
-  border-radius: 8px;
 }
 
 .rotate-ui {
