@@ -147,32 +147,48 @@ async function loadLeaderboard() {
       return { addr: t.addr, attr: gt?.attributes || {}, poolAddr };
     });
 
-    // Step 2: fetch real 7d OHLCV + holders in parallel
-    const ohlcvPromises = tokenInfo.map(t =>
-      t.poolAddr
-        ? fetch(`https://api.geckoterminal.com/api/v2/networks/ton/pools/${t.poolAddr}/ohlcv/day?limit=7`)
-            .then(r => r.json()).catch(() => null)
-        : Promise.resolve(null)
-    );
-    const holderPromises = TOKENS.map(t =>
-      fetch(`https://tonapi.io/v2/jettons/${encodeURIComponent(t.addr)}`)
-        .then(r => r.json()).catch(() => null)
-    );
-    const [ohlcvResults, holderResults] = await Promise.all([
-      Promise.all(ohlcvPromises),
-      Promise.all(holderPromises),
+    // Step 2: resolve pool addresses — use relationship data or fetch separately
+    const poolAddrPromises = tokenInfo.map(t => {
+      if (t.poolAddr) return Promise.resolve(t.poolAddr);
+      return fetch(
+        `https://api.geckoterminal.com/api/v2/networks/ton/tokens/${encodeURIComponent(t.addr)}/pools?limit=1`
+      ).then(r => r.json())
+        .then(j => {
+          const id = j?.data?.[0]?.id || '';
+          return id.startsWith('ton_') ? id.slice(4) : '';
+        })
+        .catch(() => '');
+    });
+
+    // Step 3: holders + pool addresses in parallel, then OHLCV
+    const [poolAddrs, holderResults] = await Promise.all([
+      Promise.all(poolAddrPromises),
+      Promise.all(TOKENS.map(t =>
+        fetch(`https://tonapi.io/v2/jettons/${encodeURIComponent(t.addr)}`)
+          .then(r => r.json()).catch(() => null)
+      )),
     ]);
+
+    // Fetch real 7d USD volume via OHLCV (currency=usd gives USD-denominated candles)
+    const ohlcvResults = await Promise.all(
+      poolAddrs.map(addr =>
+        addr
+          ? fetch(`https://api.geckoterminal.com/api/v2/networks/ton/pools/${addr}/ohlcv/day?limit=7&currency=usd`)
+              .then(r => r.json()).catch(() => null)
+          : Promise.resolve(null)
+      )
+    );
 
     const rows = tokenInfo.map((t, i) => {
       const attr    = t.attr;
       const name    = attr.symbol || attr.name || t.addr.slice(0, 6) + '…';
       const mcap    = parseFloat(attr.market_cap_usd || attr.fdv_usd || 0);
 
-      // Real 7d volume: sum of daily candle volumes (index 5)
+      // Sum 7 daily candles — index [5] is volume, in USD thanks to currency=usd param
       const candles = ohlcvResults[i]?.data?.attributes?.ohlcv_list;
-      const vol7d   = candles
+      const vol7d   = candles && candles.length
         ? candles.reduce((s, c) => s + (parseFloat(c[5]) || 0), 0)
-        : parseFloat(attr.volume_usd?.h24 || 0) * 7;
+        : parseFloat(attr.volume_usd?.h24 || 0) * 7; // fallback only if pool missing
 
       const hData   = holderResults[i];
       const holders = hData?.holders_count || 0;
