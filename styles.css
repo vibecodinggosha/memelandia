@@ -43,15 +43,15 @@ a { text-decoration: none; color: inherit; }
 }
 .portrait-overlay.visible { display: flex; }
 
-/* Island image — fills width, taller crop, centered on islands */
+/* Island image — narrower, centered */
 .overlay-island {
-  width: 100%;
-  height: 46vh;
+  width: 86%;
+  height: 42vh;
   object-fit: cover;
   object-position: center center;
   display: block;
   filter: brightness(0.62);
-  margin-bottom: 0;
+  border-radius: 8px;
 }
 
 .rotate-ui {
@@ -59,7 +59,9 @@ a { text-decoration: none; color: inherit; }
   flex-direction: column;
   align-items: center;
   gap: 14px;
-  margin-top: -48px; /* phone overlaps bottom edge of island */
+  margin-top: -100px;
+  position: relative;
+  z-index: 1;
 }
 
 .rotate-svg {
