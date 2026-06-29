@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Book of Zhgun — The Meme Republic</title>
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;600;700;800;900&family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet" />
+</head>
+<body>
+
+  <!-- ===================== NAV ===================== -->
+  <header class="navbar">
+    <div class="navbar__inner">
+      <div class="navbar__logo">
+        <span class="logo-icon">📖</span>
+        <span class="logo-text">Book of <span class="accent">ZHGUN</span></span>
+      </div>
+
+      <nav class="navbar__links">
+        <a href="#about">About</a>
+        <a href="#buy">Buy</a>
+        <a href="#tokenomics">Tokenomics</a>
+        <a href="#roadmap">Roadmap</a>
+        <a href="#community">Community</a>
+      </nav>
+
+      <div class="navbar__socials">
+        <a href="https://t.me/bookofzhgun" target="_blank" rel="noopener" class="social-btn tg" title="Telegram">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.894 8.221-1.97 9.28c-.145.658-.537.818-1.084.508l-3-2.21-1.447 1.394c-.16.16-.295.295-.605.295l.213-3.053 5.56-5.023c.242-.213-.054-.333-.373-.12l-6.869 4.326-2.96-.924c-.643-.204-.657-.643.136-.953l11.57-4.461c.537-.194 1.006.131.829.941z"/></svg>
+        </a>
+        <a href="https://x.com/bookofzhgun" target="_blank" rel="noopener" class="social-btn tw" title="Twitter / X">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+        </a>
+        <a href="https://dexscreener.com" target="_blank" rel="noopener" class="social-btn dex" title="DexScreener">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.477 2 2 6.477 2 12s4.477 10 10 10 10-4.477 10-10S17.523 2 12 2zm-1 14.5v-9l7 4.5-7 4.5z"/></svg>
+        </a>
+      </div>
+
+      <button class="buy-btn navbar__buy" onclick="document.getElementById('buy').scrollIntoView({behavior:'smooth'})">
+        BUY $ZHGUN
+      </button>
+
+      <button class="burger" id="burger" aria-label="menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+
+    <div class="mobile-menu" id="mobileMenu">
+      <a href="#about" onclick="closeMobile()">About</a>
+      <a href="#buy" onclick="closeMobile()">Buy</a>
+      <a href="#tokenomics" onclick="closeMobile()">Tokenomics</a>
+      <a href="#roadmap" onclick="closeMobile()">Roadmap</a>
+      <a href="#community" onclick="closeMobile()">Community</a>
+    </div>
+  </header>
+
+  <!-- ===================== HERO ===================== -->
+  <section class="hero" id="about">
+    <div class="hero__bg-clouds">
+      <div class="cloud cloud--1"></div>
+      <div class="cloud cloud--2"></div>
+      <div class="cloud cloud--3"></div>
+      <div class="cloud cloud--4"></div>
+    </div>
+
+    <div class="hero__content">
+      <div class="hero__badge">🚀 The Ultimate Meme Universe</div>
+      <h1 class="hero__title">
+        Welcome to the<br/>
+        <span class="hero__title--accent">Book of ZHGUN</span>
+      </h1>
+      <p class="hero__sub">
+        Explore the floating islands of the Meme Republic.<br/>
+        Join the community, ride the waves, and conquer the charts.
+      </p>
+      <div class="hero__cta">
+        <button class="buy-btn buy-btn--large" onclick="document.getElementById('buy').scrollIntoView({behavior:'smooth'})">
+          🛒 BUY $ZHGUN NOW
+        </button>
+        <a href="https://t.me/bookofzhgun" target="_blank" rel="noopener" class="outline-btn">
+          💬 JOIN TELEGRAM
+        </a>
+      </div>
+    </div>
+
+    <div class="hero__map-wrap">
+      <img
+        src="map.jpeg"
+        alt="Book of Zhgun — Meme Republic Map"
+        class="hero__map"
+        loading="eager"
+        decoding="async"
+      />
+      <div class="hero__map-glow"></div>
+    </div>
+
+    <div class="hero__scroll-hint">
+      <span>Scroll to explore</span>
+      <div class="hero__arrow">↓</div>
+    </div>
+  </section>
+
+  <!-- ===================== TICKER ===================== -->
+  <div class="ticker-wrap">
+    <div class="ticker">
+      <span>🔥 $ZHGUN TO THE MOON</span>
+      <span>⚡ MEME REPUBLIC IS LIVE</span>
+      <span>📖 READ THE BOOK OF ZHGUN</span>
+      <span>🚀 LAUNCHPAD OPEN</span>
+      <span>🏆 LEADERBOARD REWARDS</span>
+      <span>💎 DIAMOND HANDS ONLY</span>
+      <span>🌊 TRENDING PEAKS UNLOCKED</span>
+      <span>🦈 COMMUNITY FORUM ACTIVE</span>
+      <span>🔥 $ZHGUN TO THE MOON</span>
+      <span>⚡ MEME REPUBLIC IS LIVE</span>
+      <span>📖 READ THE BOOK OF ZHGUN</span>
+      <span>🚀 LAUNCHPAD OPEN</span>
+      <span>🏆 LEADERBOARD REWARDS</span>
+      <span>💎 DIAMOND HANDS ONLY</span>
+      <span>🌊 TRENDING PEAKS UNLOCKED</span>
+      <span>🦈 COMMUNITY FORUM ACTIVE</span>
+    </div>
+  </div>
+
+  <!-- ===================== STATS ===================== -->
+  <section class="stats-section">
+    <div class="container">
+      <div class="stats-grid">
+        <div class="stat-card">
+          <div class="stat-icon">👥</div>
+          <div class="stat-value" data-target="50000">0</div>
+          <div class="stat-label">Community Members</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon">🏝️</div>
+          <div class="stat-value" data-target="7">0</div>
+          <div class="stat-label">Floating Islands</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon">🔥</div>
+          <div class="stat-value" data-target="1000000" data-suffix="B">0</div>
+          <div class="stat-label">Total Supply</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon">🚀</div>
+          <div class="stat-value" data-target="24">0</div>
+          <div class="stat-label">Hours to Moon 🌙</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== ABOUT ===================== -->
+  <section class="about-section">
+    <div class="container">
+      <div class="section-tag">✨ What is ZHGUN?</div>
+      <h2 class="section-title">The Legend of the <span class="accent">Meme Republic</span></h2>
+      <div class="about-grid">
+        <div class="about-card">
+          <div class="about-card__icon">📖</div>
+          <h3>The Book</h3>
+          <p>The Book of Zhgun holds the sacred lore of the Meme Republic — ancient wisdom passed down through floating islands, viral memes, and legendary holders.</p>
+        </div>
+        <div class="about-card">
+          <div class="about-card__icon">🌍</div>
+          <h3>The World</h3>
+          <p>Seven floating islands, each with its own culture: Community Forum, Trending Peaks, Developer District, Launchpad, Leaderboard, DEXs and the mysterious Dead Zone.</p>
+        </div>
+        <div class="about-card">
+          <div class="about-card__icon">🦸</div>
+          <h3>The Mission</h3>
+          <p>Unite the meme world under one flag. Build, trade, laugh, and win together. ZHGUN is not just a token — it's a civilization.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== BUY ===================== -->
+  <section class="buy-section" id="buy">
+    <div class="container">
+      <div class="section-tag">💰 Get $ZHGUN</div>
+      <h2 class="section-title">Buy <span class="accent">$ZHGUN</span> Now</h2>
+      <p class="section-sub">Available on the best DEXs and CEXs in the galaxy. Choose your weapon.</p>
+
+      <div class="buy-grid">
+        <a href="https://raydium.io" target="_blank" rel="noopener" class="exchange-card">
+          <div class="exchange-card__logo raydium-logo">
+            <svg viewBox="0 0 40 40" fill="none"><circle cx="20" cy="20" r="20" fill="#9945FF"/><path d="M10 26l10-16 10 16H10z" fill="white"/></svg>
+          </div>
+          <div class="exchange-card__info">
+            <span class="exchange-card__name">Raydium</span>
+            <span class="exchange-card__type">DEX · Solana</span>
+          </div>
+          <span class="exchange-card__arrow">→</span>
+        </a>
+
+        <a href="https://jup.ag" target="_blank" rel="noopener" class="exchange-card">
+          <div class="exchange-card__logo jupiter-logo">
+            <svg viewBox="0 0 40 40" fill="none"><circle cx="20" cy="20" r="20" fill="#00D18C"/><path d="M13 27c4-8 10-14 14-14" stroke="white" stroke-width="3" stroke-linecap="round"/><circle cx="27" cy="13" r="3" fill="white"/></svg>
+          </div>
+          <div class="exchange-card__info">
+            <span class="exchange-card__name">Jupiter</span>
+            <span class="exchange-card__type">DEX Aggregator</span>
+          </div>
+          <span class="exchange-card__arrow">→</span>
+        </a>
+
+        <a href="https://dexscreener.com" target="_blank" rel="noopener" class="exchange-card">
+          <div class="exchange-card__logo dexscreener-logo">
+            <svg viewBox="0 0 40 40" fill="none"><circle cx="20" cy="20" r="20" fill="#1F1F2E"/><rect x="10" y="20" width="4" height="10" fill="#00E676"/><rect x="16" y="14" width="4" height="16" fill="#00E676"/><rect x="22" y="17" width="4" height="13" fill="#00E676"/><rect x="28" y="10" width="4" height="20" fill="#00E676"/></svg>
+          </div>
+          <div class="exchange-card__info">
+            <span class="exchange-card__name">DexScreener</span>
+            <span class="exchange-card__type">Charts & Analytics</span>
+          </div>
+          <span class="exchange-card__arrow">→</span>
+        </a>
+
+        <a href="https://pump.fun" target="_blank" rel="noopener" class="exchange-card">
+          <div class="exchange-card__logo pump-logo">
+            <svg viewBox="0 0 40 40" fill="none"><circle cx="20" cy="20" r="20" fill="#FF6B35"/><text x="20" y="26" text-anchor="middle" font-size="16" fill="white">🔥</text></svg>
+          </div>
+          <div class="exchange-card__info">
+            <span class="exchange-card__name">Pump.fun</span>
+            <span class="exchange-card__type">Launch Platform</span>
+          </div>
+          <span class="exchange-card__arrow">→</span>
+        </a>
+
+        <a href="https://www.xt.com" target="_blank" rel="noopener" class="exchange-card exchange-card--featured">
+          <div class="exchange-card__badge">🔥 HOT</div>
+          <div class="exchange-card__logo">
+            <svg viewBox="0 0 40 40" fill="none"><circle cx="20" cy="20" r="20" fill="#1A6FF5"/><text x="20" y="26" text-anchor="middle" font-size="14" fill="white" font-weight="bold">XT</text></svg>
+          </div>
+          <div class="exchange-card__info">
+            <span class="exchange-card__name">XT.com</span>
+            <span class="exchange-card__type">CEX Exchange</span>
+          </div>
+          <span class="exchange-card__arrow">→</span>
+        </a>
+
+        <a href="https://www.mexc.com" target="_blank" rel="noopener" class="exchange-card exchange-card--featured">
+          <div class="exchange-card__badge">⭐ TOP</div>
+          <div class="exchange-card__logo">
+            <svg viewBox="0 0 40 40" fill="none"><circle cx="20" cy="20" r="20" fill="#0D1421"/><text x="20" y="26" text-anchor="middle" font-size="11" fill="#1EF5CE" font-weight="bold">MEXC</text></svg>
+          </div>
+          <div class="exchange-card__info">
+            <span class="exchange-card__name">MEXC</span>
+            <span class="exchange-card__type">CEX Exchange</span>
+          </div>
+          <span class="exchange-card__arrow">→</span>
+        </a>
+      </div>
+
+      <div class="contract-box">
+        <span class="contract-label">📋 Contract Address</span>
+        <div class="contract-value-wrap">
+          <span class="contract-value" id="contractAddr">bookofzhgun.com</span>
+          <button class="copy-btn" onclick="copyContract()" title="Copy">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>
+            <span id="copyLabel">Copy</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== TOKENOMICS ===================== -->
+  <section class="tokenomics-section" id="tokenomics">
+    <div class="container">
+      <div class="section-tag">📊 Tokenomics</div>
+      <h2 class="section-title">Fair & <span class="accent">Transparent</span></h2>
+      <p class="section-sub">No presale. No team tokens. 100% community owned.</p>
+
+      <div class="tokenomics-wrap">
+        <div class="tokenomics-chart">
+          <div class="donut-chart">
+            <svg viewBox="0 0 200 200" class="donut-svg">
+              <circle class="donut-ring" cx="100" cy="100" r="80" fill="none" stroke="#1a1a3e" stroke-width="36"/>
+              <!-- Liquidity 60% -->
+              <circle class="donut-seg seg-1" cx="100" cy="100" r="80" fill="none"
+                stroke="#9B5DE5" stroke-width="36"
+                stroke-dasharray="301.59 502.65"
+                stroke-dashoffset="125.66"/>
+              <!-- Community 25% -->
+              <circle class="donut-seg seg-2" cx="100" cy="100" r="80" fill="none"
+                stroke="#F15BB5" stroke-width="36"
+                stroke-dasharray="125.66 502.65"
+                stroke-dashoffset="-175.93"/>
+              <!-- Marketing 10% -->
+              <circle class="donut-seg seg-3" cx="100" cy="100" r="80" fill="none"
+                stroke="#FEE440" stroke-width="36"
+                stroke-dasharray="50.27 502.65"
+                stroke-dashoffset="-301.59"/>
+              <!-- Dev 5% -->
+              <circle class="donut-seg seg-4" cx="100" cy="100" r="80" fill="none"
+                stroke="#00BBF9" stroke-width="36"
+                stroke-dasharray="25.13 502.65"
+                stroke-dashoffset="-351.86"/>
+              <text x="100" y="95" text-anchor="middle" fill="white" font-size="22" font-weight="800" font-family="Baloo 2">1B</text>
+              <text x="100" y="118" text-anchor="middle" fill="#aaa" font-size="11" font-family="Baloo 2">Total Supply</text>
+            </svg>
+          </div>
+        </div>
+
+        <div class="tokenomics-legend">
+          <div class="legend-item">
+            <div class="legend-dot" style="background:#9B5DE5"></div>
+            <div class="legend-info">
+              <span class="legend-name">Liquidity Pool</span>
+              <span class="legend-pct">60%</span>
+            </div>
+            <div class="legend-bar"><div class="legend-fill" style="width:60%;background:#9B5DE5"></div></div>
+          </div>
+          <div class="legend-item">
+            <div class="legend-dot" style="background:#F15BB5"></div>
+            <div class="legend-info">
+              <span class="legend-name">Community Rewards</span>
+              <span class="legend-pct">25%</span>
+            </div>
+            <div class="legend-bar"><div class="legend-fill" style="width:25%;background:#F15BB5"></div></div>
+          </div>
+          <div class="legend-item">
+            <div class="legend-dot" style="background:#FEE440"></div>
+            <div class="legend-info">
+              <span class="legend-name">Marketing</span>
+              <span class="legend-pct">10%</span>
+            </div>
+            <div class="legend-bar"><div class="legend-fill" style="width:10%;background:#FEE440"></div></div>
+          </div>
+          <div class="legend-item">
+            <div class="legend-dot" style="background:#00BBF9"></div>
+            <div class="legend-info">
+              <span class="legend-name">Development</span>
+              <span class="legend-pct">5%</span>
+            </div>
+            <div class="legend-bar"><div class="legend-fill" style="width:5%;background:#00BBF9"></div></div>
+          </div>
+
+          <div class="token-features">
+            <div class="token-feature">✅ 0% Buy Tax</div>
+            <div class="token-feature">✅ 0% Sell Tax</div>
+            <div class="token-feature">✅ LP Burned</div>
+            <div class="token-feature">✅ Contract Renounced</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== ROADMAP ===================== -->
+  <section class="roadmap-section" id="roadmap">
+    <div class="container">
+      <div class="section-tag">🗺️ Roadmap</div>
+      <h2 class="section-title">The <span class="accent">Journey</span> Ahead</h2>
+
+      <div class="roadmap-track">
+        <div class="roadmap-phase done">
+          <div class="phase-dot">✓</div>
+          <div class="phase-content">
+            <div class="phase-label">Phase 1</div>
+            <h3>Genesis</h3>
+            <ul>
+              <li>Token Launch</li>
+              <li>Website Live</li>
+              <li>Community Bootstrap</li>
+              <li>Social Channels Open</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="roadmap-phase active">
+          <div class="phase-dot">🔥</div>
+          <div class="phase-content">
+            <div class="phase-label">Phase 2 — NOW</div>
+            <h3>Rise of the Republic</h3>
+            <ul>
+              <li>CEX Listings</li>
+              <li>CoinMarketCap & CoinGecko</li>
+              <li>Influencer Campaign</li>
+              <li>Community Competitions</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="roadmap-phase">
+          <div class="phase-dot">🚀</div>
+          <div class="phase-content">
+            <div class="phase-label">Phase 3</div>
+            <h3>Conquer the Peaks</h3>
+            <ul>
+              <li>NFT Collection Drop</li>
+              <li>Staking Platform</li>
+              <li>Leaderboard Rewards</li>
+              <li>Major CEX Listings</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="roadmap-phase">
+          <div class="phase-dot">🌙</div>
+          <div class="phase-content">
+            <div class="phase-label">Phase 4</div>
+            <h3>To the Moon</h3>
+            <ul>
+              <li>ZHGUN DAO Governance</li>
+              <li>Metaverse Island</li>
+              <li>Global Meme Events</li>
+              <li>World Domination 🌍</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== COMMUNITY ===================== -->
+  <section class="community-section" id="community">
+    <div class="container">
+      <div class="section-tag">🌊 Community</div>
+      <h2 class="section-title">Join the <span class="accent">Republic</span></h2>
+      <p class="section-sub">Thousands of holders. One mission. Let's go.</p>
+
+      <div class="community-grid">
+        <a href="https://t.me/bookofzhgun" target="_blank" rel="noopener" class="community-card tg-card">
+          <div class="community-card__icon">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.894 8.221-1.97 9.28c-.145.658-.537.818-1.084.508l-3-2.21-1.447 1.394c-.16.16-.295.295-.605.295l.213-3.053 5.56-5.023c.242-.213-.054-.333-.373-.12l-6.869 4.326-2.96-.924c-.643-.204-.657-.643.136-.953l11.57-4.461c.537-.194 1.006.131.829.941z"/></svg>
+          </div>
+          <h3>Telegram</h3>
+          <p>Main community hub. Alpha, memes, giveaways.</p>
+          <span class="community-card__cta">Join Now →</span>
+        </a>
+
+        <a href="https://x.com/bookofzhgun" target="_blank" rel="noopener" class="community-card tw-card">
+          <div class="community-card__icon">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+          </div>
+          <h3>Twitter / X</h3>
+          <p>Latest news, announcements and viral memes.</p>
+          <span class="community-card__cta">Follow →</span>
+        </a>
+
+        <a href="https://dexscreener.com" target="_blank" rel="noopener" class="community-card dex-card">
+          <div class="community-card__icon">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M3 13h2v8H3zm4-5h2v13H7zm4-4h2v17h-2zm4 2h2v15h-2zm4-6h2v21h-2z"/></svg>
+          </div>
+          <h3>DexScreener</h3>
+          <p>Real-time charts and trading data for $ZHGUN.</p>
+          <span class="community-card__cta">View Chart →</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== FOOTER ===================== -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer__top">
+        <div class="footer__brand">
+          <span class="logo-icon">📖</span>
+          <span class="logo-text">Book of <span class="accent">ZHGUN</span></span>
+        </div>
+        <div class="footer__socials">
+          <a href="https://t.me/bookofzhgun" target="_blank" rel="noopener" class="social-btn tg">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.894 8.221-1.97 9.28c-.145.658-.537.818-1.084.508l-3-2.21-1.447 1.394c-.16.16-.295.295-.605.295l.213-3.053 5.56-5.023c.242-.213-.054-.333-.373-.12l-6.869 4.326-2.96-.924c-.643-.204-.657-.643.136-.953l11.57-4.461c.537-.194 1.006.131.829.941z"/></svg>
+          </a>
+          <a href="https://x.com/bookofzhgun" target="_blank" rel="noopener" class="social-btn tw">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+          </a>
+        </div>
+      </div>
+      <div class="footer__divider"></div>
+      <div class="footer__bottom">
+        <p>© 2026 Book of ZHGUN. All rights reserved. Not financial advice. DYOR.</p>
+        <p class="footer__disclaimer">$ZHGUN is a meme token with no intrinsic value or financial return expectation.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
