@@ -111,9 +111,12 @@ a { text-decoration: none; color: inherit; }
   font-weight: 900;
   font-size: 0.95rem;
   letter-spacing: 0.06em;
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
+}
+
+.navbar__right {
+  display: flex;
+  align-items: center;
+  gap: 10px;
 }
 
 .nav-buy {
