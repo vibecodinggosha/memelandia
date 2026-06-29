@@ -11,24 +11,10 @@
 </head>
 <body>
 
-  <!-- ======== ROTATE SCREEN (portrait mobile only) ======== -->
-  <div class="rotate-screen" id="rotateScreen">
-    <div class="rotate-icon">
-      <svg class="phone-svg" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <!-- phone outline -->
-        <rect class="phone-body" x="28" y="18" width="44" height="64" rx="7" stroke="white" stroke-width="3.5"/>
-        <!-- home dot -->
-        <circle class="phone-dot" cx="50" cy="72" r="3.5" fill="white"/>
-      </svg>
-    </div>
-    <p class="rotate-text">FLIP TO ROTATE</p>
-  </div>
-
   <!-- ======== NAVBAR ======== -->
   <header class="navbar">
     <div class="navbar__logo">ZHGUNLANDIA</div>
     <nav class="navbar__links">
-      <a href="#map">MAP</a>
       <a href="https://t.me/bookofzhgun" target="_blank" rel="noopener">TELEGRAM</a>
       <a href="https://x.com/bookofzhgun" target="_blank" rel="noopener">X</a>
       <a href="https://dexscreener.com" target="_blank" rel="noopener">CHART</a>
@@ -36,36 +22,48 @@
     <a href="https://dexscreener.com" target="_blank" rel="noopener" class="nav-buy">BUY $ZHGUN</a>
   </header>
 
-  <!-- ======== MAP SECTION ======== -->
-  <section class="map-section" id="map">
-    <div class="map-wrap">
-      <img
-        src="map.jpeg"
-        alt="ZHGUNLANDIA Map"
-        class="map-img"
-        draggable="false"
-      />
+  <!-- ======== SITE WRAP ======== -->
+  <div class="site-wrap">
 
-      <!-- HOTSPOTS -->
-      <button class="hotspot" style="left:16%;top:47%"  data-panel="law"         aria-label="Law"></button>
-      <button class="hotspot" style="left:29%;top:30%"  data-panel="community"   aria-label="Community Forum"></button>
-      <button class="hotspot" style="left:51%;top:36%"  data-panel="liquidity"   aria-label="Liquidity Lakes"></button>
-      <button class="hotspot" style="left:41%;top:52%"  data-panel="leaderboard" aria-label="Leaderboard"></button>
-      <button class="hotspot" style="left:64%;top:25%"  data-panel="trending"    aria-label="Trending Peaks"></button>
-      <button class="hotspot" style="left:22%;top:67%"  data-panel="dead"        aria-label="Dead Zone"></button>
-      <button class="hotspot" style="left:47%;top:73%"  data-panel="launchpad"   aria-label="Launchpad"></button>
-      <button class="hotspot" style="left:60%;top:56%"  data-panel="bots"        aria-label="Bots"></button>
-      <button class="hotspot" style="left:70%;top:48%"  data-panel="developer"   aria-label="Developer District"></button>
-      <button class="hotspot" style="left:82%;top:62%"  data-panel="dexs"        aria-label="DEXs"></button>
-    </div>
-  </section>
+    <!-- MAP -->
+    <section class="map-section">
+      <div class="map-wrap">
+        <img src="map.jpeg" alt="ZHGUNLANDIA Map" class="map-img" draggable="false" />
+
+        <!-- HOTSPOTS -->
+        <button class="hotspot" style="left:16%;top:47%"  data-panel="law"         aria-label="Law"></button>
+        <button class="hotspot" style="left:29%;top:30%"  data-panel="community"   aria-label="Community Forum"></button>
+        <button class="hotspot" style="left:51%;top:36%"  data-panel="liquidity"   aria-label="Liquidity Lakes"></button>
+        <button class="hotspot" style="left:41%;top:52%"  data-panel="leaderboard" aria-label="Leaderboard"></button>
+        <button class="hotspot" style="left:64%;top:25%"  data-panel="trending"    aria-label="Trending Peaks"></button>
+        <button class="hotspot" style="left:22%;top:67%"  data-panel="dead"        aria-label="Dead Zone"></button>
+        <button class="hotspot" style="left:47%;top:73%"  data-panel="launchpad"   aria-label="Launchpad"></button>
+        <button class="hotspot" style="left:60%;top:56%"  data-panel="bots"        aria-label="Bots"></button>
+        <button class="hotspot" style="left:70%;top:48%"  data-panel="developer"   aria-label="Developer District"></button>
+        <button class="hotspot" style="left:82%;top:62%"  data-panel="dexs"        aria-label="DEXs"></button>
+      </div>
+    </section>
+
+    <!-- ROTATE PROMPT (portrait mobile only) -->
+    <section class="rotate-section">
+      <!-- Phone SVG drawn in portrait, CSS rotates it to landscape -->
+      <div class="rotate-icon">
+        <svg class="phone-svg" viewBox="0 0 60 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect x="4" y="4" width="52" height="92" rx="9" stroke="white" stroke-width="3"/>
+          <circle cx="30" cy="88" r="4.5" fill="white"/>
+          <rect x="20" y="12" width="20" height="3" rx="1.5" fill="rgba(255,255,255,0.4)"/>
+        </svg>
+      </div>
+      <p class="rotate-text">FLIP TO ROTATE</p>
+    </section>
+
+  </div><!-- /site-wrap -->
 
   <!-- ======== OVERLAY ======== -->
   <div class="overlay" id="overlay"></div>
 
   <!-- ======== PANELS ======== -->
 
-  <!-- COMMUNITY FORUM -->
   <div class="panel" id="panel-community">
     <button class="panel__close" aria-label="Close">✕</button>
     <h2 class="panel__title">JOIN THE <span class="rainbow">MEME MOVEMENT</span> 🔥</h2>
@@ -78,7 +76,6 @@
     </div>
   </div>
 
-  <!-- TRENDING PEAKS -->
   <div class="panel" id="panel-trending">
     <button class="panel__close" aria-label="Close">✕</button>
     <h2 class="panel__title">TRACK. LEARN. <span class="rainbow">CONQUER</span>.</h2>
@@ -95,7 +92,6 @@
     </div>
   </div>
 
-  <!-- LIQUIDITY LAKES -->
   <div class="panel" id="panel-liquidity">
     <button class="panel__close" aria-label="Close">✕</button>
     <h2 class="panel__title"><span class="rainbow">DIVE IN</span> &amp; EARN 💧</h2>
@@ -111,7 +107,6 @@
     </div>
   </div>
 
-  <!-- LEADERBOARD -->
   <div class="panel" id="panel-leaderboard">
     <button class="panel__close" aria-label="Close">✕</button>
     <h2 class="panel__title">RISE TO THE <span class="rainbow">TOP</span> 🏆</h2>
@@ -124,7 +119,6 @@
     </div>
   </div>
 
-  <!-- LAW -->
   <div class="panel" id="panel-law">
     <button class="panel__close" aria-label="Close">✕</button>
     <h2 class="panel__title">LAW &amp; <span class="rainbow">ORDER</span> ⚖️</h2>
@@ -138,7 +132,6 @@
     </div>
   </div>
 
-  <!-- DEAD ZONE -->
   <div class="panel" id="panel-dead">
     <button class="panel__close" aria-label="Close">✕</button>
     <h2 class="panel__title">NEED A <span class="rainbow">LIFELINE</span> ?</h2>
@@ -150,12 +143,11 @@
     </div>
   </div>
 
-  <!-- LAUNCHPAD -->
   <div class="panel" id="panel-launchpad">
     <button class="panel__close" aria-label="Close">✕</button>
     <h2 class="panel__title">LAUNCH YOUR MEME TO <span class="rainbow">THE MOON</span> 🚀</h2>
     <p>CHOOSE YOUR LAUNCH PARTNER AND BRING YOUR MEME TO LIFE.</p>
-    <p>NAME IT. PICK YOUR $TICKER. ADD YOUR STORY AND VISUAL.<br/>PAY THE DEPLOYMENT FEE — AND BOOM, YOUR TOKEN IS LIVE!</p>
+    <p>NAME IT. PICK YOUR $TICKER. ADD YOUR STORY AND VISUAL. PAY THE DEPLOYMENT FEE — AND BOOM, YOUR TOKEN IS LIVE!</p>
     <p>UNTIL YOUR MEME REACHES ITS FIRST MARKET-CAP MILESTONE, IT'LL LIVE EXCLUSIVELY INSIDE YOUR CHOSEN LAUNCHPAD.</p>
     <p>NEED HELP? CHECK THE IN-APP GUIDE ANYTIME.</p>
     <div class="panel__label">SELECT A LAUNCHPAD:</div>
@@ -167,7 +159,6 @@
     </div>
   </div>
 
-  <!-- BOTS -->
   <div class="panel" id="panel-bots">
     <button class="panel__close" aria-label="Close">✕</button>
     <h2 class="panel__title">TRADE THE <span class="rainbow">HOTTEST MEMES</span></h2>
@@ -180,13 +171,12 @@
       <a href="https://t.me/pocketfi_bot" target="_blank" rel="noopener" class="pill-btn">POCKETFI</a>
       <a href="https://t.me/Ave_ai_bot" target="_blank" rel="noopener" class="pill-btn">AVEAI</a>
     </div>
-    <p>COMPARE PRICES, VOLUMES, AND CHART YOUR NEXT 100X.<br/>SOME TOKENS MIGHT NOT BE PART OF ZHGUNLANDIA YET, SO ALWAYS DYOR.</p>
-    <div class="panel__group" style="margin-top:8px">
+    <p>COMPARE PRICES, VOLUMES, AND CHART YOUR NEXT 100X. SOME TOKENS MIGHT NOT BE PART OF ZHGUNLANDIA YET, SO ALWAYS DYOR.</p>
+    <div class="panel__group">
       <a href="https://dexscreener.com" target="_blank" rel="noopener" class="pill-btn">VIEW LEADERBOARD</a>
     </div>
   </div>
 
-  <!-- DEVELOPER DISTRICT -->
   <div class="panel" id="panel-developer">
     <button class="panel__close" aria-label="Close">✕</button>
     <h2 class="panel__title"><span class="rainbow">BUILD</span>. MANAGE. LOCK. REPEAT.</h2>
@@ -202,7 +192,6 @@
     </div>
   </div>
 
-  <!-- DEXS -->
   <div class="panel" id="panel-dexs">
     <button class="panel__close" aria-label="Close">✕</button>
     <h2 class="panel__title"><span class="rainbow">DIVE IN</span> &amp; EARN 💧</h2>

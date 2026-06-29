@@ -3,26 +3,8 @@
    ========================================== */
 
 const overlay    = document.getElementById('overlay');
-const rotateScr  = document.getElementById('rotateScreen');
 let activePanel   = null;
 let activeHotspot = null;
-
-/* ---------- orientation check ---------- */
-function checkOrientation() {
-  const isMobile = window.innerWidth <= 900 || window.innerHeight <= 900;
-  const isPortrait = window.innerHeight > window.innerWidth;
-  if (isMobile && isPortrait) {
-    rotateScr.style.display = 'flex';
-    // close any open panel when rotated back to portrait
-    closeAll();
-  } else {
-    rotateScr.style.display = 'none';
-  }
-}
-
-window.addEventListener('resize',           checkOrientation, { passive: true });
-window.addEventListener('orientationchange', checkOrientation, { passive: true });
-checkOrientation(); // run on load
 
 /* ---------- panel logic ---------- */
 function openPanel(panelId, hotspot) {
@@ -30,14 +12,12 @@ function openPanel(panelId, hotspot) {
     activePanel.classList.remove('open');
     if (activeHotspot) activeHotspot.classList.remove('active');
   }
-
   const panel = document.getElementById('panel-' + panelId);
   if (!panel) return;
 
   panel.classList.add('open');
   overlay.classList.add('show');
   hotspot.classList.add('active');
-
   activePanel   = panel;
   activeHotspot = hotspot;
   document.body.style.overflow = 'hidden';
@@ -70,4 +50,9 @@ overlay.addEventListener('click', closeAll);
 
 document.addEventListener('keydown', e => {
   if (e.key === 'Escape') closeAll();
+});
+
+/* ---------- landscape: close panels when rotating ---------- */
+window.addEventListener('orientationchange', () => {
+  closeAll();
 });
