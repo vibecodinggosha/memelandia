@@ -12,41 +12,30 @@
 <body>
 
   <!-- =====================================================
-       PORTRAIT OVERLAY — full grey screen with island + rotate icon
+       PORTRAIT OVERLAY — dark semi-transparent dimming + rotate icon
        Shown in portrait, hidden in landscape
        ===================================================== -->
   <div class="portrait-overlay" id="portraitOverlay">
-    <img src="map.jpeg" alt="ZHGUNLANDIA Map" class="overlay-island" />
-
     <div class="rotate-ui">
-      <!-- Phone in landscape with circular rotation arrows -->
-      <svg class="rotate-svg" viewBox="0 0 200 190" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <svg class="rotate-svg" viewBox="0 0 200 230" fill="none" xmlns="http://www.w3.org/2000/svg">
         <defs>
-          <marker id="aw" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto">
-            <path d="M 0 1 L 10 6 L 0 11" stroke="white" stroke-width="2.2" fill="none"
-                  stroke-linecap="round" stroke-linejoin="round"/>
-          </marker>
-          <marker id="ad" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto">
-            <path d="M 0 1 L 10 6 L 0 11" stroke="rgba(255,255,255,0.42)" stroke-width="2.2" fill="none"
+          <marker id="ar" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto">
+            <path d="M 0 1 L 8 5 L 0 9" stroke="rgba(255,255,255,0.7)" stroke-width="2.2" fill="none"
                   stroke-linecap="round" stroke-linejoin="round"/>
           </marker>
         </defs>
 
-        <!-- Top arc — white, sweeps over the top of the phone -->
-        <path d="M 12 95 A 88 88 0 0 0 188 95"
-              stroke="white" stroke-width="3" stroke-linecap="round"
-              marker-end="url(#aw)"/>
+        <!-- Phone — starts portrait, CSS animates it rotating to landscape -->
+        <g class="phone-anim">
+          <rect x="62" y="24" width="76" height="132" rx="14"
+                stroke="white" stroke-width="3.5" fill="none"/>
+          <circle cx="100" cy="145" r="7" fill="white"/>
+        </g>
 
-        <!-- Phone body in landscape -->
-        <rect x="37" y="57" width="126" height="76" rx="14"
-              stroke="white" stroke-width="3.5" fill="none"/>
-        <!-- Camera / button dot on left -->
-        <circle cx="57" cy="95" r="7" fill="white"/>
-
-        <!-- Bottom arc — dim, sweeps under the phone -->
-        <path d="M 188 95 A 88 88 0 0 1 12 95"
-              stroke="rgba(255,255,255,0.4)" stroke-width="3" stroke-linecap="round"
-              marker-end="url(#ad)"/>
+        <!-- Bottom rotation arc -->
+        <path d="M 28 192 A 72 26 0 0 0 172 192"
+              stroke="rgba(255,255,255,0.6)" stroke-width="3" stroke-linecap="round"
+              marker-end="url(#ar)"/>
       </svg>
 
       <p class="rotate-text">FLIP TO ROTATE</p>
