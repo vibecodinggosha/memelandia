@@ -147,6 +147,21 @@ a { text-decoration: none; color: inherit; }
   border-radius: 2px;
 }
 
+.navbar.portrait-mode {
+  background: transparent;
+  border-bottom-color: transparent;
+}
+.navbar.portrait-mode .nav-buy {
+  background: rgba(0,0,0,0.35);
+  color: #fff;
+}
+.navbar.portrait-mode .nav-hamburger span {
+  background: #fff;
+}
+.navbar.portrait-mode .navbar__logo {
+  color: #fff;
+}
+
 /* ========== NAV MENU ========== */
 .nav-menu {
   display: none;
