@@ -111,9 +111,12 @@ a { text-decoration: none; color: inherit; }
   font-weight: 900;
   font-size: 0.95rem;
   letter-spacing: 0.06em;
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
+}
+
+.navbar__right {
+  display: flex;
+  align-items: center;
+  gap: 10px;
 }
 
 .nav-buy {
@@ -145,6 +148,21 @@ a { text-decoration: none; color: inherit; }
   height: 2px;
   background: #111;
   border-radius: 2px;
+}
+
+.navbar.portrait-mode {
+  background: transparent;
+  border-bottom-color: transparent;
+}
+.navbar.portrait-mode .nav-buy {
+  background: rgba(0,0,0,0.35);
+  color: #fff;
+}
+.navbar.portrait-mode .nav-hamburger span {
+  background: #fff;
+}
+.navbar.portrait-mode .navbar__logo {
+  color: #fff;
 }
 
 /* ========== NAV MENU ========== */

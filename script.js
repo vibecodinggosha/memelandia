@@ -15,12 +15,16 @@ let activeHotspot = null;
 let lbLoaded      = false;
 
 /* ---------- portrait / landscape detection ---------- */
+const navbar = document.querySelector('.navbar');
+
 function updateOrientation() {
   const isPortrait = window.innerHeight > window.innerWidth;
   if (isPortrait) {
     portraitOverlay.classList.add('visible');
+    navbar.classList.add('portrait-mode');
   } else {
     portraitOverlay.classList.remove('visible');
+    navbar.classList.remove('portrait-mode');
     closeAll();
   }
 }
