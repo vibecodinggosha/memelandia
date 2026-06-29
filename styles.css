@@ -101,9 +101,11 @@ a { text-decoration: none; color: inherit; }
   background: #fff;
   border-bottom: 1.5px solid #e5e5e5;
   display: flex;
+  flex-wrap: nowrap;
   align-items: center;
   justify-content: space-between;
-  padding: 0 20px;
+  padding: 0 16px;
+  gap: 8px;
 }
 
 .navbar__logo {
@@ -111,12 +113,18 @@ a { text-decoration: none; color: inherit; }
   font-weight: 900;
   font-size: 0.95rem;
   letter-spacing: 0.06em;
+  white-space: nowrap;
+  flex-shrink: 1;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .navbar__right {
   display: flex;
+  flex-shrink: 0;
   align-items: center;
-  gap: 10px;
+  gap: 8px;
 }
 
 .nav-buy {
