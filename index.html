@@ -47,14 +47,25 @@
        LANDSCAPE SITE — normal page, hidden in portrait
        ===================================================== -->
   <header class="navbar">
-    <div class="navbar__logo">ZHGUNLANDIA</div>
-    <nav class="navbar__links">
-      <a href="https://t.me/zhgunlandia" target="_blank" rel="noopener">TELEGRAM</a>
-      <a href="https://x.com/zhgunlandia" target="_blank" rel="noopener">X</a>
-      <a href="https://dexscreener.com" target="_blank" rel="noopener">CHART</a>
-    </nav>
     <a href="https://dexscreener.com" target="_blank" rel="noopener" class="nav-buy">BUY $ZLND</a>
+    <div class="navbar__logo">ZHGUNLANDIA</div>
+    <button class="nav-hamburger" id="navHamburger" aria-label="Open menu">
+      <span></span><span></span><span></span>
+    </button>
   </header>
+
+  <!-- ======== NAV MENU ======== -->
+  <div class="nav-menu" id="navMenu">
+    <div class="nav-menu__head">
+      <div class="nav-menu__logo">ZHGUNLANDIA</div>
+      <button class="nav-menu__close" id="navMenuClose">✕</button>
+    </div>
+    <nav class="nav-menu__body">
+      <a href="#" class="nav-menu__link" id="menuHome">HOME</a>
+      <a href="#" class="nav-menu__link" id="menuLeaderboard">LEADERBOARD</a>
+    </nav>
+    <a href="https://t.me/zhgunlandia" target="_blank" rel="noopener" class="nav-menu__join">JOIN COMMUNITY</a>
+  </div>
 
   <div class="site-wrap">
     <section class="map-section">
@@ -126,13 +137,9 @@
   <div class="panel" id="panel-leaderboard">
     <button class="panel__close" aria-label="Close">✕</button>
     <h2 class="panel__title">RISE TO THE <span class="rainbow">TOP</span> 🏆</h2>
-    <p>THE LEADERBOARD RANKS THE BIGGEST HOLDERS, TRADERS, AND COMMUNITY LEGENDS.</p>
-    <p>COMPETE FOR REWARDS, RECOGNITION, AND GLORY IN ZHGUNLANDIA.</p>
-    <p>THE TOP HOLDERS GET EXCLUSIVE PERKS — ARE YOU ON THE LIST?</p>
-    <div class="panel__group">
-      <a href="https://dexscreener.com" target="_blank" rel="noopener" class="pill-btn">VIEW LEADERBOARD</a>
-      <a href="https://t.me/zhgunlandia" target="_blank" rel="noopener" class="pill-btn">JOIN THE COMPETITION</a>
-    </div>
+    <p class="lb-formula">MCAP 50% · VOL 7D 30% · HOLDERS 20%</p>
+    <div class="lb-loading" id="lbLoading">LOADING DATA...</div>
+    <div class="lb-list" id="lbList"></div>
   </div>
 
   <div class="panel" id="panel-law">
