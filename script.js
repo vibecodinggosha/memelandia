@@ -2,9 +2,25 @@
    ZHGUNLANDIA — Panel / Hotspot Logic
    ========================================== */
 
-const overlay    = document.getElementById('overlay');
+const overlay       = document.getElementById('overlay');
+const portraitOverlay = document.getElementById('portraitOverlay');
 let activePanel   = null;
 let activeHotspot = null;
+
+/* ---------- portrait / landscape detection ---------- */
+function updateOrientation() {
+  const isPortrait = window.innerHeight > window.innerWidth;
+  if (isPortrait) {
+    portraitOverlay.classList.add('visible');
+  } else {
+    portraitOverlay.classList.remove('visible');
+    closeAll();
+  }
+}
+
+updateOrientation();
+window.addEventListener('resize', updateOrientation);
+window.addEventListener('orientationchange', () => setTimeout(updateOrientation, 80));
 
 /* ---------- panel logic ---------- */
 function openPanel(panelId, hotspot) {
@@ -50,9 +66,4 @@ overlay.addEventListener('click', closeAll);
 
 document.addEventListener('keydown', e => {
   if (e.key === 'Escape') closeAll();
-});
-
-/* ---------- landscape: close panels when rotating ---------- */
-window.addEventListener('orientationchange', () => {
-  closeAll();
 });

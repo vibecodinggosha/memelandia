@@ -40,14 +40,7 @@ a { text-decoration: none; color: inherit; }
   justify-content: center;
   padding: 24px 16px 40px;
 }
-
-@media (orientation: portrait) {
-  .portrait-overlay { display: flex; }
-}
-
-@media (orientation: landscape) {
-  .portrait-overlay { display: none !important; }
-}
+.portrait-overlay.visible { display: flex; }
 
 .overlay-island {
   width: min(88%, 460px);
