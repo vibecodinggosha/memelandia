@@ -34,7 +34,14 @@ a { text-decoration: none; color: inherit; }
   position: fixed;
   inset: 0;
   z-index: 9000;
-  background: rgba(0, 0, 0, 0.55);
+  /* map.jpeg as background, darkened by gradient layer on top */
+  background-color: #888;
+  background-image:
+    linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.45)),
+    url('map.jpeg');
+  background-size: 100% 100%, auto 44%;
+  background-position: 0 0, center 18%;
+  background-repeat: no-repeat, no-repeat;
   flex-direction: column;
   align-items: center;
   justify-content: center;
@@ -47,6 +54,7 @@ a { text-decoration: none; color: inherit; }
   flex-direction: column;
   align-items: center;
   gap: 20px;
+  margin-top: 20vh; /* push below the map area */
 }
 
 .rotate-svg {
@@ -56,7 +64,8 @@ a { text-decoration: none; color: inherit; }
 
 /* Phone rotates portrait → landscape → portrait */
 .phone-anim {
-  transform-origin: 100px 90px;
+  transform-box: fill-box;
+  transform-origin: center center;
   animation: phoneFlip 2.6s ease-in-out infinite;
 }
 
