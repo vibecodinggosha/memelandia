@@ -127,35 +127,54 @@ async function loadLeaderboard() {
   const lbList    = document.getElementById('lbList');
 
   lbLoading.style.display = 'block';
+  lbLoading.textContent   = 'LOADING DATA...';
   lbList.innerHTML = '';
 
   try {
-    const addrs = TOKENS.map(t => t.addr).join(',');
-    const gtUrl = `https://api.geckoterminal.com/api/v2/networks/ton/tokens/multi/${addrs}`;
+    // Step 1: fetch token metadata + top pool addresses
+    const addrs  = TOKENS.map(t => t.addr).join(',');
+    const gtJson = await fetch(
+      `https://api.geckoterminal.com/api/v2/networks/ton/tokens/multi/${addrs}`
+    ).then(r => r.json());
+    const gtData = gtJson.data || [];
 
-    const [gtRes] = await Promise.all([fetch(gtUrl)]);
-    const gtJson  = await gtRes.json();
-    const gtData  = gtJson.data || [];
+    const tokenInfo = TOKENS.map(t => {
+      const gt      = gtData.find(d =>
+        (d.attributes?.address || '').toLowerCase() === t.addr.toLowerCase()
+      );
+      const poolId  = gt?.relationships?.top_pools?.data?.[0]?.id || '';
+      const poolAddr = poolId.startsWith('ton_') ? poolId.slice(4) : '';
+      return { addr: t.addr, attr: gt?.attributes || {}, poolAddr };
+    });
 
+    // Step 2: fetch real 7d OHLCV + holders in parallel
+    const ohlcvPromises = tokenInfo.map(t =>
+      t.poolAddr
+        ? fetch(`https://api.geckoterminal.com/api/v2/networks/ton/pools/${t.poolAddr}/ohlcv/day?limit=7`)
+            .then(r => r.json()).catch(() => null)
+        : Promise.resolve(null)
+    );
     const holderPromises = TOKENS.map(t =>
       fetch(`https://tonapi.io/v2/jettons/${encodeURIComponent(t.addr)}`)
-        .then(r => r.json())
-        .catch(() => null)
+        .then(r => r.json()).catch(() => null)
     );
-    const holderResults = await Promise.all(holderPromises);
+    const [ohlcvResults, holderResults] = await Promise.all([
+      Promise.all(ohlcvPromises),
+      Promise.all(holderPromises),
+    ]);
 
-    const rows = TOKENS.map((t, i) => {
-      const gt = gtData.find(d => {
-        const a = (d.attributes?.address || '').toLowerCase();
-        return a === t.addr.toLowerCase() || a.includes(t.addr.toLowerCase().replace(/[^a-z0-9]/g, ''));
-      });
-      const attr     = gt ? gt.attributes : {};
-      const name     = attr.symbol || attr.name || t.addr.slice(0, 6) + '…';
-      const mcap     = parseFloat(attr.market_cap_usd  || attr.fdv_usd || 0);
-      const vol24h   = parseFloat(attr.volume_usd?.h24  || 0);
-      const vol7d    = vol24h * 7;
-      const hData    = holderResults[i];
-      const holders  = hData ? (hData.holders_count || 0) : 0;
+    const rows = tokenInfo.map((t, i) => {
+      const attr    = t.attr;
+      const name    = attr.symbol || attr.name || t.addr.slice(0, 6) + '…';
+      const mcap    = parseFloat(attr.market_cap_usd || attr.fdv_usd || 0);
+
+      // Real 7d volume: sum of daily candle volumes (index 5)
+      const candles = ohlcvResults[i]?.data?.attributes?.ohlcv_list;
+      const vol7d   = candles
+        ? candles.reduce((s, c) => s + (parseFloat(c[5]) || 0), 0)
+        : parseFloat(attr.volume_usd?.h24 || 0) * 7; // fallback
+
+      const holders = holderResults[i]?.holders_count || 0;
       return { name, mcap, vol7d, holders };
     });
 
