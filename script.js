@@ -106,7 +106,7 @@ overlay.addEventListener('click', closeAll);
 
 document.addEventListener('keydown', e => {
   if (e.key !== 'Escape') return;
-  if (lbSheet.classList.contains('open')) {
+  if (lbSheet?.classList.contains('open')) {
     closeTokenSheet();
   } else {
     closeAll();
@@ -118,7 +118,7 @@ let sheetAddr = '';
 
 function openTokenSheet(i) {
   const r = lbRows[i];
-  if (!r) return;
+  if (!r || !lbSheet) return;
 
   const logo = document.getElementById('lbSheetLogo');
   logo.style.visibility = r.logo ? 'visible' : 'hidden';
@@ -128,7 +128,7 @@ function openTokenSheet(i) {
   document.getElementById('lbSheetRank').textContent    = '#' + (i + 1);
   document.getElementById('lbSheetMcap').textContent    = '$' + fmt(r.mcap);
   document.getElementById('lbSheetVol').textContent     = (r.volReal ? '$' : '~$') + fmt(r.vol7d);
-  document.getElementById('lbSheetHolders').textContent = fmt(r.holders);
+  document.getElementById('lbSheetHolders').textContent = r.holdersKnown ? fmt(r.holders) : '—';
   document.getElementById('lbSheetScore').textContent   = r.score.toFixed(1);
   document.getElementById('lbSheetAddr').textContent    = r.addr;
   sheetAddr = r.addr;
@@ -139,6 +139,7 @@ function openTokenSheet(i) {
 }
 
 function closeTokenSheet() {
+  if (!lbSheet) return;
   lbSheet.classList.remove('open');
   lbSheetBackdrop.classList.remove('show');
 }
@@ -147,6 +148,10 @@ document.getElementById('lbList').addEventListener('click', e => {
   const item = e.target.closest('.lb-item');
   if (item) openTokenSheet(+item.dataset.i);
 });
+
+// Guard: with a stale cached index.html the sheet markup may be missing —
+// skip wiring instead of crashing the whole script on a null element.
+if (lbSheet) {
 
 document.getElementById('lbSheetClose').addEventListener('click', closeTokenSheet);
 lbSheetBackdrop.addEventListener('click', closeTokenSheet);
@@ -168,6 +173,8 @@ lbSheetCopy.addEventListener('click', () => {
     done();
   }
 });
+
+}
 
 /* ---------- leaderboard ---------- */
 const TOKENS = [
@@ -262,12 +269,26 @@ async function loadLeaderboard() {
       });
       return { sum, real };
     });
-    const holderPromises = TOKENS.map(t =>
-      fetchJson(`https://tonapi.io/v2/jettons/${encodeURIComponent(t.addr)}`)
-    );
+    // tonapi.io allows ~1 req/sec without a key — 12 parallel calls get 429s
+    // (missing avatars, HOLDERS 0). Fetch sequentially with a gap + one retry.
+    const fetchHolders = async () => {
+      const out = [];
+      for (const t of TOKENS) {
+        const url = `https://tonapi.io/v2/jettons/${encodeURIComponent(t.addr)}`;
+        let j = await fetchJson(url);
+        if (!j) {
+          await sleep(1100);
+          j = await fetchJson(url);
+        }
+        out.push(j);
+        await sleep(220);
+      }
+      return out;
+    };
+
     const [vol7dResults, holderResults] = await Promise.all([
       Promise.all(vol7dPromises),
-      Promise.all(holderPromises),
+      fetchHolders(),
     ]);
 
     const rows = tokenInfo.map((t, i) => {
@@ -280,12 +301,13 @@ async function loadLeaderboard() {
         ? vol7dResults[i].sum
         : parseFloat(attr.volume_usd?.h24 || 0) * 7;
 
-      const hData   = holderResults[i];
-      const holders = hData?.holders_count || 0;
-      let logo      = hData?.metadata?.image || '';
+      const hData        = holderResults[i];
+      const holdersKnown = hData != null;
+      const holders      = hData?.holders_count || 0;
+      let logo           = hData?.metadata?.image || '';
       if (logo.startsWith('ipfs://')) logo = 'https://ipfs.io/ipfs/' + logo.slice(7);
 
-      return { addr: t.addr, name, mcap, vol7d, volReal, holders, logo };
+      return { addr: t.addr, name, mcap, vol7d, volReal, holders, holdersKnown, logo };
     });
 
     const maxMcap    = Math.max(...rows.map(r => r.mcap),    1);
@@ -317,7 +339,7 @@ async function loadLeaderboard() {
             <div class="lb-meta">
               <span>MCAP <b>$${fmt(r.mcap)}</b></span>
               <span>VOL 7D <b>${vol}</b></span>
-              <span>HOLDERS <b>${fmt(r.holders)}</b></span>
+              <span>HOLDERS <b>${r.holdersKnown ? fmt(r.holders) : '—'}</b></span>
             </div>
             <div class="lb-bar-wrap"><div class="lb-bar-fill" style="width:${pct}%"></div></div>
           </div>
@@ -345,6 +367,10 @@ function fetchJson(url) {
   return fetch(url)
     .then(r => (r.ok ? r.json() : null))
     .catch(() => null);
+}
+
+function sleep(ms) {
+  return new Promise(r => setTimeout(r, ms));
 }
 
 function esc(s) {
