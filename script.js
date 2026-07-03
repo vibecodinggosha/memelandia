@@ -130,17 +130,22 @@ async function loadLeaderboard() {
   const lbLoading = document.getElementById('lbLoading');
   const lbList    = document.getElementById('lbList');
 
-  lbLoading.style.display = 'block';
-  lbLoading.textContent   = 'LOADING DATA...';
-  lbList.innerHTML = '';
+  // On auto-refresh keep the old list visible; only show LOADING on first load
+  const firstLoad = !lbList.children.length;
+  if (firstLoad) {
+    lbLoading.style.display = 'block';
+    lbLoading.textContent   = 'LOADING DATA...';
+  }
 
   try {
-    // Step 1: fetch token metadata + top pool addresses
+    // Step 1: token metadata + top pool addresses.
+    // include=top_pools is required — without it the relationships are empty
+    // and we'd need 12 extra pool-lookup calls that blow the rate limit.
     const addrs  = TOKENS.map(t => t.addr).join(',');
-    const gtJson = await fetch(
-      `https://api.geckoterminal.com/api/v2/networks/ton/tokens/multi/${addrs}`
-    ).then(r => r.json());
-    const gtData = gtJson.data || [];
+    const gtJson = await fetchJson(
+      `https://api.geckoterminal.com/api/v2/networks/ton/tokens/multi/${addrs}?include=top_pools`
+    );
+    const gtData = gtJson?.data || [];
 
     const tokenInfo = TOKENS.map(t => {
       const gt      = gtData.find(d =>
@@ -151,55 +156,48 @@ async function loadLeaderboard() {
       return { addr: t.addr, attr: gt?.attributes || {}, poolAddr };
     });
 
-    // Step 2: resolve pool addresses — use relationship data or fetch separately
-    const poolAddrPromises = tokenInfo.map(t => {
-      if (t.poolAddr) return Promise.resolve(t.poolAddr);
-      return fetch(
-        `https://api.geckoterminal.com/api/v2/networks/ton/tokens/${encodeURIComponent(t.addr)}/pools?limit=1`
-      ).then(r => r.json())
-        .then(j => {
-          const id = j?.data?.[0]?.id || '';
-          return id.startsWith('ton_') ? id.slice(4) : '';
-        })
-        .catch(() => '');
+    // Step 2: real 7d USD volume (7 daily OHLCV candles) + holders, in parallel.
+    // Rare fallback: pool missing from relationships → resolve via /pools first.
+    const ohlcvPromises = tokenInfo.map(async t => {
+      let poolAddr = t.poolAddr;
+      if (!poolAddr) {
+        const j  = await fetchJson(
+          `https://api.geckoterminal.com/api/v2/networks/ton/tokens/${encodeURIComponent(t.addr)}/pools?page=1`
+        );
+        const id = j?.data?.[0]?.id || '';
+        poolAddr = id.startsWith('ton_') ? id.slice(4) : '';
+      }
+      if (!poolAddr) return null;
+      return fetchJson(
+        `https://api.geckoterminal.com/api/v2/networks/ton/pools/${poolAddr}/ohlcv/day?limit=7&currency=usd`
+      );
     });
-
-    // Step 3: holders + pool addresses in parallel, then OHLCV
-    const [poolAddrs, holderResults] = await Promise.all([
-      Promise.all(poolAddrPromises),
-      Promise.all(TOKENS.map(t =>
-        fetch(`https://tonapi.io/v2/jettons/${encodeURIComponent(t.addr)}`)
-          .then(r => r.json()).catch(() => null)
-      )),
-    ]);
-
-    // Fetch real 7d USD volume via OHLCV (currency=usd gives USD-denominated candles)
-    const ohlcvResults = await Promise.all(
-      poolAddrs.map(addr =>
-        addr
-          ? fetch(`https://api.geckoterminal.com/api/v2/networks/ton/pools/${addr}/ohlcv/day?limit=7&currency=usd`)
-              .then(r => r.json()).catch(() => null)
-          : Promise.resolve(null)
-      )
+    const holderPromises = TOKENS.map(t =>
+      fetchJson(`https://tonapi.io/v2/jettons/${encodeURIComponent(t.addr)}`)
     );
+    const [ohlcvResults, holderResults] = await Promise.all([
+      Promise.all(ohlcvPromises),
+      Promise.all(holderPromises),
+    ]);
 
     const rows = tokenInfo.map((t, i) => {
       const attr    = t.attr;
       const name    = attr.symbol || attr.name || t.addr.slice(0, 6) + '…';
       const mcap    = parseFloat(attr.market_cap_usd || attr.fdv_usd || 0);
 
-      // Sum 7 daily candles — index [5] is volume, in USD thanks to currency=usd param
+      // Sum 7 daily candles — index [5] is volume, USD-denominated (currency=usd)
       const candles = ohlcvResults[i]?.data?.attributes?.ohlcv_list;
-      const vol7d   = candles && candles.length
+      const volReal = candles && candles.length;
+      const vol7d   = volReal
         ? candles.reduce((s, c) => s + (parseFloat(c[5]) || 0), 0)
-        : parseFloat(attr.volume_usd?.h24 || 0) * 7; // fallback only if pool missing
+        : parseFloat(attr.volume_usd?.h24 || 0) * 7;
 
       const hData   = holderResults[i];
       const holders = hData?.holders_count || 0;
       let logo      = hData?.metadata?.image || '';
       if (logo.startsWith('ipfs://')) logo = 'https://ipfs.io/ipfs/' + logo.slice(7);
 
-      return { name, mcap, vol7d, holders, logo };
+      return { name, mcap, vol7d, volReal, holders, logo };
     });
 
     const maxMcap    = Math.max(...rows.map(r => r.mcap),    1);
@@ -217,28 +215,53 @@ async function loadLeaderboard() {
       const cls   = rank === 1 ? 'gold' : rank === 2 ? 'silver' : rank === 3 ? 'bronze' : '';
       const label = rank === 1 ? '🥇' : rank === 2 ? '🥈' : rank === 3 ? '🥉' : `#${rank}`;
       const pct   = r.score.toFixed(1);
-      const meta  = `MCAP $${fmt(r.mcap)} · VOL 7D $${fmt(r.vol7d)} · HOLDERS ${fmt(r.holders)}`;
+      const vol   = (r.volReal ? '$' : '~$') + fmt(r.vol7d);
       const logoHtml = r.logo
-        ? `<img class="lb-logo" src="${r.logo}" alt="" onerror="this.style.display='none'" />`
+        ? `<img class="lb-logo" src="${esc(r.logo)}" alt="" loading="lazy" onerror="this.style.visibility='hidden'" />`
         : `<div class="lb-logo"></div>`;
       return `
         <div class="lb-item">
           <div class="lb-rank ${cls}">${label}</div>
           ${logoHtml}
           <div class="lb-info">
-            <div class="lb-name">${r.name}</div>
-            <div class="lb-meta">${meta}</div>
+            <div class="lb-name">${esc(r.name)}</div>
+            <div class="lb-meta">
+              <span>MCAP <b>$${fmt(r.mcap)}</b></span>
+              <span>VOL 7D <b>${vol}</b></span>
+              <span>HOLDERS <b>${fmt(r.holders)}</b></span>
+            </div>
             <div class="lb-bar-wrap"><div class="lb-bar-fill" style="width:${pct}%"></div></div>
           </div>
           <div class="lb-score">${pct}</div>
         </div>`;
     }).join('');
 
+    const upd = document.getElementById('lbUpdated');
+    if (upd) {
+      const now = new Date();
+      upd.textContent = 'UPDATED ' +
+        String(now.getHours()).padStart(2, '0') + ':' +
+        String(now.getMinutes()).padStart(2, '0');
+    }
+
     lbLoaded = true;
   } catch (err) {
-    lbLoading.textContent = 'FAILED TO LOAD DATA.';
+    if (firstLoad) lbLoading.textContent = 'FAILED TO LOAD DATA.';
     console.error(err);
   }
+}
+
+/* fetch → parsed JSON, null on network error or non-2xx (e.g. 429 rate limit) */
+function fetchJson(url) {
+  return fetch(url)
+    .then(r => (r.ok ? r.json() : null))
+    .catch(() => null);
+}
+
+function esc(s) {
+  return String(s).replace(/[&<>"']/g, c => ({
+    '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;',
+  }[c]));
 }
 
 setInterval(() => {
