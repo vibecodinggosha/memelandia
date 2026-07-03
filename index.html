@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
   <title>ZHGUNLANDIA</title>
-  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="styles.css?v=2" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Inter:wght@900&display=swap" rel="stylesheet" />
@@ -231,6 +231,39 @@
     </div>
   </div>
 
-  <script src="script.js"></script>
+  <!-- ======== TOKEN DETAIL SHEET ======== -->
+  <div class="lb-sheet-backdrop" id="lbSheetBackdrop"></div>
+  <div class="lb-sheet" id="lbSheet">
+    <button class="lb-sheet__close" id="lbSheetClose" aria-label="Close">✕</button>
+    <div class="lb-sheet__head">
+      <img class="lb-sheet__logo" id="lbSheetLogo" alt="" />
+      <div class="lb-sheet__name" id="lbSheetName"></div>
+      <div class="lb-sheet__rank" id="lbSheetRank"></div>
+    </div>
+    <div class="lb-sheet__grid">
+      <div class="lb-sheet__tile">
+        <div class="lb-sheet__label">MARKET CAP</div>
+        <div class="lb-sheet__value" id="lbSheetMcap"></div>
+      </div>
+      <div class="lb-sheet__tile">
+        <div class="lb-sheet__label">7D VOLUME</div>
+        <div class="lb-sheet__value" id="lbSheetVol"></div>
+      </div>
+      <div class="lb-sheet__tile">
+        <div class="lb-sheet__label">HOLDERS</div>
+        <div class="lb-sheet__value" id="lbSheetHolders"></div>
+      </div>
+      <div class="lb-sheet__tile lb-sheet__tile--score">
+        <div class="lb-sheet__label">SCORE</div>
+        <div class="lb-sheet__value" id="lbSheetScore"></div>
+      </div>
+    </div>
+    <div class="lb-sheet__addr-wrap">
+      <span class="lb-sheet__addr" id="lbSheetAddr"></span>
+      <button class="lb-sheet__copy" id="lbSheetCopy" aria-label="Copy address">⧉</button>
+    </div>
+  </div>
+
+  <script src="script.js?v=2"></script>
 </body>
 </html>
