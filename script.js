@@ -9,10 +9,14 @@ const navHamburger    = document.getElementById('navHamburger');
 const navMenuClose    = document.getElementById('navMenuClose');
 const menuHome        = document.getElementById('menuHome');
 const menuLeaderboard = document.getElementById('menuLeaderboard');
+const lbSheet         = document.getElementById('lbSheet');
+const lbSheetBackdrop = document.getElementById('lbSheetBackdrop');
+const lbSheetCopy     = document.getElementById('lbSheetCopy');
 
 let activePanel   = null;
 let activeHotspot = null;
 let lbLoaded      = false;
+let lbRows        = [];
 
 /* ---------- portrait / landscape detection ---------- */
 const navbar = document.querySelector('.navbar');
@@ -75,6 +79,7 @@ function openPanel(panelId, hotspot) {
 }
 
 function closeAll() {
+  closeTokenSheet();
   if (activePanel)   { activePanel.classList.remove('open'); activePanel = null; }
   if (activeHotspot) { activeHotspot.classList.remove('active'); activeHotspot = null; }
   overlay.classList.remove('show');
@@ -100,7 +105,68 @@ document.querySelectorAll('.panel__close').forEach(btn => {
 overlay.addEventListener('click', closeAll);
 
 document.addEventListener('keydown', e => {
-  if (e.key === 'Escape') closeAll();
+  if (e.key !== 'Escape') return;
+  if (lbSheet.classList.contains('open')) {
+    closeTokenSheet();
+  } else {
+    closeAll();
+  }
+});
+
+/* ---------- token detail sheet ---------- */
+let sheetAddr = '';
+
+function openTokenSheet(i) {
+  const r = lbRows[i];
+  if (!r) return;
+
+  const logo = document.getElementById('lbSheetLogo');
+  logo.style.visibility = r.logo ? 'visible' : 'hidden';
+  logo.src = r.logo || '';
+
+  document.getElementById('lbSheetName').textContent    = r.name;
+  document.getElementById('lbSheetRank').textContent    = '#' + (i + 1);
+  document.getElementById('lbSheetMcap').textContent    = '$' + fmt(r.mcap);
+  document.getElementById('lbSheetVol').textContent     = (r.volReal ? '$' : '~$') + fmt(r.vol7d);
+  document.getElementById('lbSheetHolders').textContent = fmt(r.holders);
+  document.getElementById('lbSheetScore').textContent   = r.score.toFixed(1);
+  document.getElementById('lbSheetAddr').textContent    = r.addr;
+  sheetAddr = r.addr;
+  lbSheetCopy.textContent = '⧉';
+
+  lbSheetBackdrop.classList.add('show');
+  lbSheet.classList.add('open');
+}
+
+function closeTokenSheet() {
+  lbSheet.classList.remove('open');
+  lbSheetBackdrop.classList.remove('show');
+}
+
+document.getElementById('lbList').addEventListener('click', e => {
+  const item = e.target.closest('.lb-item');
+  if (item) openTokenSheet(+item.dataset.i);
+});
+
+document.getElementById('lbSheetClose').addEventListener('click', closeTokenSheet);
+lbSheetBackdrop.addEventListener('click', closeTokenSheet);
+
+lbSheetCopy.addEventListener('click', () => {
+  const done = () => {
+    lbSheetCopy.textContent = '✓';
+    setTimeout(() => { lbSheetCopy.textContent = '⧉'; }, 1200);
+  };
+  if (navigator.clipboard?.writeText) {
+    navigator.clipboard.writeText(sheetAddr).then(done).catch(() => {});
+  } else {
+    const ta = document.createElement('textarea');
+    ta.value = sheetAddr;
+    document.body.appendChild(ta);
+    ta.select();
+    document.execCommand('copy');
+    ta.remove();
+    done();
+  }
 });
 
 /* ---------- leaderboard ---------- */
@@ -147,36 +213,60 @@ async function loadLeaderboard() {
     );
     const gtData = gtJson?.data || [];
 
+    // Per-pool 24h volume from the included pool objects — used to pick
+    // each token's most active pools when it trades on several DEXes.
+    const poolVol24 = {};
+    (gtJson?.included || []).forEach(p => {
+      poolVol24[p.id] = parseFloat(p.attributes?.volume_usd?.h24 || 0);
+    });
+
     const tokenInfo = TOKENS.map(t => {
       const gt      = gtData.find(d =>
         (d.attributes?.address || '').toLowerCase() === t.addr.toLowerCase()
       );
-      const poolId  = gt?.relationships?.top_pools?.data?.[0]?.id || '';
-      const poolAddr = poolId.startsWith('ton_') ? poolId.slice(4) : '';
-      return { addr: t.addr, attr: gt?.attributes || {}, poolAddr };
+      const poolIds = (gt?.relationships?.top_pools?.data || []).map(d => d.id);
+      return { addr: t.addr, attr: gt?.attributes || {}, poolIds };
     });
 
-    // Step 2: real 7d USD volume (7 daily OHLCV candles) + holders, in parallel.
-    // Rare fallback: pool missing from relationships → resolve via /pools first.
-    const ohlcvPromises = tokenInfo.map(async t => {
-      let poolAddr = t.poolAddr;
-      if (!poolAddr) {
-        const j  = await fetchJson(
+    // Step 2: real 7d USD volume + holders, in parallel.
+    // A token may trade on several DEXes (STON.fi, DeDust, ...), so sum the
+    // 7 daily OHLCV candles across its pools — capped at 2 most active pools
+    // per token to stay inside GeckoTerminal's 30 req/min limit (1 + 12*2 = 25).
+    const vol7dPromises = tokenInfo.map(async t => {
+      let ids = t.poolIds;
+      if (!ids.length) {
+        const j = await fetchJson(
           `https://api.geckoterminal.com/api/v2/networks/ton/tokens/${encodeURIComponent(t.addr)}/pools?page=1`
         );
-        const id = j?.data?.[0]?.id || '';
-        poolAddr = id.startsWith('ton_') ? id.slice(4) : '';
+        ids = (j?.data || []).map(d => d.id);
       }
-      if (!poolAddr) return null;
-      return fetchJson(
-        `https://api.geckoterminal.com/api/v2/networks/ton/pools/${poolAddr}/ohlcv/day?limit=7&currency=usd`
-      );
+      ids = ids
+        .sort((a, b) => (poolVol24[b] || 0) - (poolVol24[a] || 0))
+        .slice(0, 2);
+
+      const results = await Promise.all(ids.map(id => {
+        const poolAddr = id.startsWith('ton_') ? id.slice(4) : id;
+        return fetchJson(
+          `https://api.geckoterminal.com/api/v2/networks/ton/pools/${poolAddr}/ohlcv/day?limit=7&currency=usd`
+        );
+      }));
+
+      let sum = 0, real = false;
+      results.forEach(r => {
+        const candles = r?.data?.attributes?.ohlcv_list;
+        if (candles && candles.length) {
+          real = true;
+          // candle format: [ts, open, high, low, close, volume] — USD (currency=usd)
+          candles.forEach(c => { sum += parseFloat(c[5]) || 0; });
+        }
+      });
+      return { sum, real };
     });
     const holderPromises = TOKENS.map(t =>
       fetchJson(`https://tonapi.io/v2/jettons/${encodeURIComponent(t.addr)}`)
     );
-    const [ohlcvResults, holderResults] = await Promise.all([
-      Promise.all(ohlcvPromises),
+    const [vol7dResults, holderResults] = await Promise.all([
+      Promise.all(vol7dPromises),
       Promise.all(holderPromises),
     ]);
 
@@ -185,11 +275,9 @@ async function loadLeaderboard() {
       const name    = attr.symbol || attr.name || t.addr.slice(0, 6) + '…';
       const mcap    = parseFloat(attr.market_cap_usd || attr.fdv_usd || 0);
 
-      // Sum 7 daily candles — index [5] is volume, USD-denominated (currency=usd)
-      const candles = ohlcvResults[i]?.data?.attributes?.ohlcv_list;
-      const volReal = candles && candles.length;
+      const volReal = vol7dResults[i].real;
       const vol7d   = volReal
-        ? candles.reduce((s, c) => s + (parseFloat(c[5]) || 0), 0)
+        ? vol7dResults[i].sum
         : parseFloat(attr.volume_usd?.h24 || 0) * 7;
 
       const hData   = holderResults[i];
@@ -197,7 +285,7 @@ async function loadLeaderboard() {
       let logo      = hData?.metadata?.image || '';
       if (logo.startsWith('ipfs://')) logo = 'https://ipfs.io/ipfs/' + logo.slice(7);
 
-      return { name, mcap, vol7d, volReal, holders, logo };
+      return { addr: t.addr, name, mcap, vol7d, volReal, holders, logo };
     });
 
     const maxMcap    = Math.max(...rows.map(r => r.mcap),    1);
@@ -208,6 +296,7 @@ async function loadLeaderboard() {
       r.score = (r.mcap / maxMcap * 0.5 + r.vol7d / maxVol * 0.3 + r.holders / maxHolders * 0.2) * 100;
     });
     rows.sort((a, b) => b.score - a.score);
+    lbRows = rows;
 
     lbLoading.style.display = 'none';
     lbList.innerHTML = rows.map((r, i) => {
@@ -220,7 +309,7 @@ async function loadLeaderboard() {
         ? `<img class="lb-logo" src="${esc(r.logo)}" alt="" loading="lazy" onerror="this.style.visibility='hidden'" />`
         : `<div class="lb-logo"></div>`;
       return `
-        <div class="lb-item">
+        <div class="lb-item" data-i="${i}">
           <div class="lb-rank ${cls}">${label}</div>
           ${logoHtml}
           <div class="lb-info">
