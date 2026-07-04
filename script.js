@@ -249,11 +249,22 @@ async function loadLeaderboard() {
       return { addr: t.addr, attr: gt?.attributes || {}, poolIds };
     });
 
+    // Precomputed 7d volumes: a GitHub Action snapshots DeDust 24h volumes
+    // daily and sums the last 7 days into data/vol7d.json. When that file is
+    // fresh, use it and skip the per-pool OHLCV calls entirely.
+    const volFile  = await fetchJson('data/vol7d.json?t=' + Date.now());
+    const volFresh = !!(volFile?.vol7d && volFile.updated &&
+                        Date.now() - Date.parse(volFile.updated) < 48 * 3600 * 1000);
+
     // Step 2: real 7d USD volume + holders, in parallel.
-    // A token may trade on several DEXes (STON.fi, DeDust, ...), so sum the
-    // 7 daily OHLCV candles across its pools — capped at 2 most active pools
-    // per token to stay inside GeckoTerminal's 30 req/min limit (1 + 12*2 = 25).
+    // Fallback path when vol7d.json is missing/stale: a token may trade on
+    // several DEXes, so sum the 7 daily OHLCV candles across its pools —
+    // capped at 2 most active pools per token to stay inside GeckoTerminal's
+    // 30 req/min limit (1 + 12*2 = 25).
     const vol7dPromises = tokenInfo.map(async t => {
+      if (volFresh && volFile.vol7d[t.addr] != null) {
+        return { sum: volFile.vol7d[t.addr], real: true };
+      }
       let ids = t.poolIds;
       if (!ids.length) {
         const j = await fetchJson(
