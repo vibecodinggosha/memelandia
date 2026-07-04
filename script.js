@@ -17,6 +17,7 @@ let activePanel   = null;
 let activeHotspot = null;
 let lbLoaded      = false;
 let lbRows        = [];
+let lbRetryTimer  = null;
 
 /* ---------- portrait / landscape detection ---------- */
 const navbar = document.querySelector('.navbar');
@@ -55,6 +56,17 @@ menuLeaderboard.addEventListener('click', e => {
   e.preventDefault();
   navMenu.classList.remove('open');
   openPanel('leaderboard', null);
+});
+
+/* ---------- cross-panel links ---------- */
+document.getElementById('viewLeaderboardBtn')?.addEventListener('click', e => {
+  e.preventDefault();
+  openPanel('leaderboard', null);
+});
+
+document.getElementById('communityRulesBtn')?.addEventListener('click', e => {
+  e.preventDefault();
+  openPanel('rules', null);
 });
 
 /* ---------- panel logic ---------- */
@@ -192,6 +204,13 @@ const TOKENS = [
   { addr: 'EQAmvp1Vrr0zY2--STdH-0X_mP5iCD61p2vNVJYwHlgBni2C', name: '' },
 ];
 
+/* Hidden from the leaderboard by token symbol (accents ignored: KOTÉ → KOTE) */
+const LB_EXCLUDE = ['KOTE', 'SKITTY'];
+
+function normName(s) {
+  return String(s).normalize('NFD').replace(/[\u0300-\u036f]/g, '').toUpperCase().trim();
+}
+
 function fmt(n) {
   if (n >= 1e9) return (n / 1e9).toFixed(1) + 'B';
   if (n >= 1e6) return (n / 1e6).toFixed(1) + 'M';
@@ -215,10 +234,16 @@ async function loadLeaderboard() {
     // include=top_pools is required — without it the relationships are empty
     // and we'd need 12 extra pool-lookup calls that blow the rate limit.
     const addrs  = TOKENS.map(t => t.addr).join(',');
-    const gtJson = await fetchJson(
-      `https://api.geckoterminal.com/api/v2/networks/ton/tokens/multi/${addrs}?include=top_pools`
+    const gtJson = await fetchJsonRetry(
+      `https://api.geckoterminal.com/api/v2/networks/ton/tokens/multi/${addrs}?include=top_pools`,
+      3
     );
     const gtData = gtJson?.data || [];
+
+    // Without this call there are no names, mcaps or pools — rendering would
+    // produce a garbage $0 leaderboard ranked by holders only. Bail out:
+    // first load shows a retry message, auto-refresh keeps the previous list.
+    if (!gtData.length) throw new Error('geckoterminal unavailable');
 
     // Per-pool 24h volume from the included pool objects — used to pick
     // each token's most active pools when it trades on several DEXes.
@@ -235,11 +260,22 @@ async function loadLeaderboard() {
       return { addr: t.addr, attr: gt?.attributes || {}, poolIds };
     });
 
+    // Precomputed 7d volumes: a GitHub Action snapshots DeDust 24h volumes
+    // daily and sums the last 7 days into data/vol7d.json. When that file is
+    // fresh, use it and skip the per-pool OHLCV calls entirely.
+    const volFile  = await fetchJson('data/vol7d.json?t=' + Date.now());
+    const volFresh = !!(volFile?.vol7d && volFile.updated &&
+                        Date.now() - Date.parse(volFile.updated) < 48 * 3600 * 1000);
+
     // Step 2: real 7d USD volume + holders, in parallel.
-    // A token may trade on several DEXes (STON.fi, DeDust, ...), so sum the
-    // 7 daily OHLCV candles across its pools — capped at 2 most active pools
-    // per token to stay inside GeckoTerminal's 30 req/min limit (1 + 12*2 = 25).
+    // Fallback path when vol7d.json is missing/stale: a token may trade on
+    // several DEXes, so sum the 7 daily OHLCV candles across its pools —
+    // capped at 2 most active pools per token to stay inside GeckoTerminal's
+    // 30 req/min limit (1 + 12*2 = 25).
     const vol7dPromises = tokenInfo.map(async t => {
+      if (volFresh && volFile.vol7d[t.addr] != null) {
+        return { sum: volFile.vol7d[t.addr], real: true };
+      }
       let ids = t.poolIds;
       if (!ids.length) {
         const j = await fetchJson(
@@ -308,7 +344,7 @@ async function loadLeaderboard() {
       if (logo.startsWith('ipfs://')) logo = 'https://ipfs.io/ipfs/' + logo.slice(7);
 
       return { addr: t.addr, name, mcap, vol7d, volReal, holders, holdersKnown, logo };
-    });
+    }).filter(r => !LB_EXCLUDE.includes(normName(r.name)));
 
     const maxMcap    = Math.max(...rows.map(r => r.mcap),    1);
     const maxVol     = Math.max(...rows.map(r => r.vol7d),   1);
@@ -357,9 +393,27 @@ async function loadLeaderboard() {
 
     lbLoaded = true;
   } catch (err) {
-    if (firstLoad) lbLoading.textContent = 'FAILED TO LOAD DATA.';
     console.error(err);
+    if (firstLoad) {
+      lbLoading.textContent = 'FAILED TO LOAD DATA — RETRYING...';
+      if (!lbRetryTimer) {
+        lbRetryTimer = setTimeout(() => {
+          lbRetryTimer = null;
+          loadLeaderboard();
+        }, 20000);
+      }
+    }
   }
+}
+
+/* fetchJson with retries — GeckoTerminal 429s recover after a short pause */
+async function fetchJsonRetry(url, tries) {
+  for (let i = 0; i < tries; i++) {
+    const j = await fetchJson(url);
+    if (j) return j;
+    if (i < tries - 1) await sleep(1600 * (i + 1));
+  }
+  return null;
 }
 
 /* fetch → parsed JSON, null on network error or non-2xx (e.g. 429 rate limit) */
