@@ -210,6 +210,7 @@ const TOKENS = [
   { addr: 'EQDjvPHOvpnoyHRISFWkRtA3U15yE6QI7jZ3iDG1PHWjiaq5', name: '' },
   { addr: 'EQA6ulHH35svS8QQz0l5EetinJLSHAFKHRMJ2E7Ax14Rluc2', name: '' },
   { addr: 'EQAmvp1Vrr0zY2--STdH-0X_mP5iCD61p2vNVJYwHlgBni2C', name: '' },
+  { addr: 'EQA6FNQzTeFvY395QVg5GhKNexiK4hECAmBbfuLY5TXyvCX2', name: '' },
 ];
 
 /* Hidden from the leaderboard by token symbol (accents ignored: KOTÉ → KOTE) */

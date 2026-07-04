@@ -25,6 +25,7 @@ const TOKENS = [
   'EQDjvPHOvpnoyHRISFWkRtA3U15yE6QI7jZ3iDG1PHWjiaq5',
   'EQA6ulHH35svS8QQz0l5EetinJLSHAFKHRMJ2E7Ax14Rluc2',
   'EQAmvp1Vrr0zY2--STdH-0X_mP5iCD61p2vNVJYwHlgBni2C',
+  'EQA6FNQzTeFvY395QVg5GhKNexiK4hECAmBbfuLY5TXyvCX2',
 ];
 
 const HIST_FILE = 'data/volume-history.json';
