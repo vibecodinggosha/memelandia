@@ -23,14 +23,16 @@ let lbRetryTimer  = null;
 const navbar = document.querySelector('.navbar');
 
 function updateOrientation() {
+  // Desktops can't be rotated — only gate touch devices behind the flip screen
+  const isTouch    = window.matchMedia('(pointer: coarse)').matches || 'ontouchstart' in window;
   const isPortrait = window.innerHeight > window.innerWidth;
-  if (isPortrait) {
+  if (isPortrait && isTouch) {
     portraitOverlay.classList.add('visible');
     navbar.classList.add('portrait-mode');
   } else {
     portraitOverlay.classList.remove('visible');
     navbar.classList.remove('portrait-mode');
-    closeAll();
+    if (!isPortrait) closeAll();
   }
 }
 
