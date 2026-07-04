@@ -143,10 +143,30 @@ async function main() {
     vol7d[addr] = hist[addr].slice(-7).reduce((s, e) => s + e.vol, 0);
   }
 
+  // Holders + logos from tonapi (sequential — anonymous limit is ~1 req/sec).
+  // Cached here so visitors don't pay for 12 throttled calls on every load.
+  const meta = {};
+  for (const addr of TOKENS) {
+    for (let attempt = 0; attempt < 2; attempt++) {
+      try {
+        const j = await getJson(`https://tonapi.io/v2/jettons/${encodeURIComponent(addr)}`);
+        let logo = j?.metadata?.image || '';
+        if (logo.startsWith('ipfs://')) logo = 'https://ipfs.io/ipfs/' + logo.slice(7);
+        meta[addr] = { holders: j?.holders_count || 0, logo };
+        break;
+      } catch (e) {
+        if (attempt) console.log(`tonapi failed for ${addr}: ${e.message}`);
+        else await sleep(1200);
+      }
+    }
+    await sleep(350);
+  }
+
   mkdirSync('data', { recursive: true });
   writeFileSync(HIST_FILE, JSON.stringify(hist, null, 1));
-  writeFileSync(OUT_FILE, JSON.stringify({ updated: new Date().toISOString(), vol7d }, null, 1));
+  writeFileSync(OUT_FILE, JSON.stringify({ updated: new Date().toISOString(), vol7d, meta }, null, 1));
   console.log('vol7d:', JSON.stringify(vol7d));
+  console.log(`meta: ${Object.keys(meta).length}/${TOKENS.length} tokens`);
 }
 
 if (process.argv[1] && import.meta.url.endsWith(process.argv[1].split('/').pop())) {
