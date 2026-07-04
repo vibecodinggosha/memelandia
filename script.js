@@ -17,6 +17,7 @@ let activePanel   = null;
 let activeHotspot = null;
 let lbLoaded      = false;
 let lbRows        = [];
+let lbRetryTimer  = null;
 
 /* ---------- portrait / landscape detection ---------- */
 const navbar = document.querySelector('.navbar');
@@ -222,10 +223,16 @@ async function loadLeaderboard() {
     // include=top_pools is required — without it the relationships are empty
     // and we'd need 12 extra pool-lookup calls that blow the rate limit.
     const addrs  = TOKENS.map(t => t.addr).join(',');
-    const gtJson = await fetchJson(
-      `https://api.geckoterminal.com/api/v2/networks/ton/tokens/multi/${addrs}?include=top_pools`
+    const gtJson = await fetchJsonRetry(
+      `https://api.geckoterminal.com/api/v2/networks/ton/tokens/multi/${addrs}?include=top_pools`,
+      3
     );
     const gtData = gtJson?.data || [];
+
+    // Without this call there are no names, mcaps or pools — rendering would
+    // produce a garbage $0 leaderboard ranked by holders only. Bail out:
+    // first load shows a retry message, auto-refresh keeps the previous list.
+    if (!gtData.length) throw new Error('geckoterminal unavailable');
 
     // Per-pool 24h volume from the included pool objects — used to pick
     // each token's most active pools when it trades on several DEXes.
@@ -364,9 +371,27 @@ async function loadLeaderboard() {
 
     lbLoaded = true;
   } catch (err) {
-    if (firstLoad) lbLoading.textContent = 'FAILED TO LOAD DATA.';
     console.error(err);
+    if (firstLoad) {
+      lbLoading.textContent = 'FAILED TO LOAD DATA — RETRYING...';
+      if (!lbRetryTimer) {
+        lbRetryTimer = setTimeout(() => {
+          lbRetryTimer = null;
+          loadLeaderboard();
+        }, 20000);
+      }
+    }
   }
+}
+
+/* fetchJson with retries — GeckoTerminal 429s recover after a short pause */
+async function fetchJsonRetry(url, tries) {
+  for (let i = 0; i < tries; i++) {
+    const j = await fetchJson(url);
+    if (j) return j;
+    if (i < tries - 1) await sleep(1600 * (i + 1));
+  }
+  return null;
 }
 
 /* fetch → parsed JSON, null on network error or non-2xx (e.g. 429 rate limit) */
