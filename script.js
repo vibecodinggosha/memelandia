@@ -192,6 +192,13 @@ const TOKENS = [
   { addr: 'EQAmvp1Vrr0zY2--STdH-0X_mP5iCD61p2vNVJYwHlgBni2C', name: '' },
 ];
 
+/* Hidden from the leaderboard by token symbol (accents ignored: KOTÉ → KOTE) */
+const LB_EXCLUDE = ['KOTE', 'SKITTY'];
+
+function normName(s) {
+  return String(s).normalize('NFD').replace(/[\u0300-\u036f]/g, '').toUpperCase().trim();
+}
+
 function fmt(n) {
   if (n >= 1e9) return (n / 1e9).toFixed(1) + 'B';
   if (n >= 1e6) return (n / 1e6).toFixed(1) + 'M';
@@ -308,7 +315,7 @@ async function loadLeaderboard() {
       if (logo.startsWith('ipfs://')) logo = 'https://ipfs.io/ipfs/' + logo.slice(7);
 
       return { addr: t.addr, name, mcap, vol7d, volReal, holders, holdersKnown, logo };
-    });
+    }).filter(r => !LB_EXCLUDE.includes(normName(r.name)));
 
     const maxMcap    = Math.max(...rows.map(r => r.mcap),    1);
     const maxVol     = Math.max(...rows.map(r => r.vol7d),   1);
