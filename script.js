@@ -58,6 +58,17 @@ menuLeaderboard.addEventListener('click', e => {
   openPanel('leaderboard', null);
 });
 
+/* ---------- cross-panel links ---------- */
+document.getElementById('viewLeaderboardBtn')?.addEventListener('click', e => {
+  e.preventDefault();
+  openPanel('leaderboard', null);
+});
+
+document.getElementById('communityRulesBtn')?.addEventListener('click', e => {
+  e.preventDefault();
+  openPanel('rules', null);
+});
+
 /* ---------- panel logic ---------- */
 function openPanel(panelId, hotspot) {
   if (activePanel) {
