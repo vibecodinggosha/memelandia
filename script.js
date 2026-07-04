@@ -58,6 +58,12 @@ menuLeaderboard.addEventListener('click', e => {
   openPanel('leaderboard', null);
 });
 
+document.getElementById('menuRules')?.addEventListener('click', e => {
+  e.preventDefault();
+  navMenu.classList.remove('open');
+  openPanel('rules', null);
+});
+
 /* ---------- cross-panel links ---------- */
 document.getElementById('viewLeaderboardBtn')?.addEventListener('click', e => {
   e.preventDefault();
