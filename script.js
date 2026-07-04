@@ -224,6 +224,42 @@ function fmt(n) {
   return String(Math.round(n));
 }
 
+function renderRows(rows, when) {
+  lbRows = rows;
+  document.getElementById('lbList').innerHTML = rows.map((r, i) => {
+    const rank  = i + 1;
+    const cls   = rank === 1 ? 'gold' : rank === 2 ? 'silver' : rank === 3 ? 'bronze' : '';
+    const label = rank === 1 ? '🥇' : rank === 2 ? '🥈' : rank === 3 ? '🥉' : `#${rank}`;
+    const pct   = r.score.toFixed(1);
+    const vol   = (r.volReal ? '$' : '~$') + fmt(r.vol7d);
+    const logoHtml = r.logo
+      ? `<img class="lb-logo" src="${esc(r.logo)}" alt="" loading="lazy" onerror="this.style.visibility='hidden'" />`
+      : `<div class="lb-logo"></div>`;
+    return `
+      <div class="lb-item" data-i="${i}">
+        <div class="lb-rank ${cls}">${label}</div>
+        ${logoHtml}
+        <div class="lb-info">
+          <div class="lb-name">${esc(r.name)}</div>
+          <div class="lb-meta">
+            <span>MCAP <b>$${fmt(r.mcap)}</b></span>
+            <span>VOL 7D <b>${vol}</b></span>
+            <span>HOLDERS <b>${r.holdersKnown ? fmt(r.holders) : '—'}</b></span>
+          </div>
+          <div class="lb-bar-wrap"><div class="lb-bar-fill" style="width:${pct}%"></div></div>
+        </div>
+        <div class="lb-score">${pct}</div>
+      </div>`;
+  }).join('');
+
+  const upd = document.getElementById('lbUpdated');
+  if (upd) {
+    upd.textContent = 'UPDATED ' +
+      String(when.getHours()).padStart(2, '0') + ':' +
+      String(when.getMinutes()).padStart(2, '0');
+  }
+}
+
 async function loadLeaderboard() {
   const lbLoading = document.getElementById('lbLoading');
   const lbList    = document.getElementById('lbList');
@@ -233,6 +269,16 @@ async function loadLeaderboard() {
   if (firstLoad) {
     lbLoading.style.display = 'block';
     lbLoading.textContent   = 'LOADING DATA...';
+
+    // Instant paint from the previous visit while fresh data loads in background
+    try {
+      const c = JSON.parse(localStorage.getItem('lbCache') || 'null');
+      if (c && Array.isArray(c.rows) && c.rows.length &&
+          Date.now() - c.t < 24 * 3600 * 1000) {
+        renderRows(c.rows, new Date(c.t));
+        lbLoading.style.display = 'none';
+      }
+    } catch (e) { /* corrupt cache — ignore */ }
   }
 
   try {
@@ -311,11 +357,19 @@ async function loadLeaderboard() {
       });
       return { sum, real };
     });
+    // Holders + logos come pre-cached in vol7d.json (refreshed by the same
+    // GitHub Action every 6h); tonapi is only queried for tokens missing there.
     // tonapi.io allows ~1 req/sec without a key — 12 parallel calls get 429s
     // (missing avatars, HOLDERS 0). Fetch sequentially with a gap + one retry.
+    const fileMeta = (volFresh && volFile.meta) || {};
     const fetchHolders = async () => {
       const out = [];
       for (const t of TOKENS) {
+        const m = fileMeta[t.addr];
+        if (m) {
+          out.push({ holders_count: m.holders, metadata: { image: m.logo } });
+          continue;
+        }
         const url = `https://tonapi.io/v2/jettons/${encodeURIComponent(t.addr)}`;
         let j = await fetchJson(url);
         if (!j) {
@@ -360,47 +414,18 @@ async function loadLeaderboard() {
       r.score = (r.mcap / maxMcap * 0.5 + r.vol7d / maxVol * 0.3 + r.holders / maxHolders * 0.2) * 100;
     });
     rows.sort((a, b) => b.score - a.score);
-    lbRows = rows;
 
     lbLoading.style.display = 'none';
-    lbList.innerHTML = rows.map((r, i) => {
-      const rank  = i + 1;
-      const cls   = rank === 1 ? 'gold' : rank === 2 ? 'silver' : rank === 3 ? 'bronze' : '';
-      const label = rank === 1 ? '🥇' : rank === 2 ? '🥈' : rank === 3 ? '🥉' : `#${rank}`;
-      const pct   = r.score.toFixed(1);
-      const vol   = (r.volReal ? '$' : '~$') + fmt(r.vol7d);
-      const logoHtml = r.logo
-        ? `<img class="lb-logo" src="${esc(r.logo)}" alt="" loading="lazy" onerror="this.style.visibility='hidden'" />`
-        : `<div class="lb-logo"></div>`;
-      return `
-        <div class="lb-item" data-i="${i}">
-          <div class="lb-rank ${cls}">${label}</div>
-          ${logoHtml}
-          <div class="lb-info">
-            <div class="lb-name">${esc(r.name)}</div>
-            <div class="lb-meta">
-              <span>MCAP <b>$${fmt(r.mcap)}</b></span>
-              <span>VOL 7D <b>${vol}</b></span>
-              <span>HOLDERS <b>${r.holdersKnown ? fmt(r.holders) : '—'}</b></span>
-            </div>
-            <div class="lb-bar-wrap"><div class="lb-bar-fill" style="width:${pct}%"></div></div>
-          </div>
-          <div class="lb-score">${pct}</div>
-        </div>`;
-    }).join('');
-
-    const upd = document.getElementById('lbUpdated');
-    if (upd) {
-      const now = new Date();
-      upd.textContent = 'UPDATED ' +
-        String(now.getHours()).padStart(2, '0') + ':' +
-        String(now.getMinutes()).padStart(2, '0');
-    }
+    renderRows(rows, new Date());
+    try {
+      localStorage.setItem('lbCache', JSON.stringify({ t: Date.now(), rows }));
+    } catch (e) { /* storage full/blocked — cache is optional */ }
 
     lbLoaded = true;
   } catch (err) {
     console.error(err);
-    if (firstLoad) {
+    // Show the failure only when nothing is on screen (no cached render either)
+    if (!lbList.children.length) {
       lbLoading.textContent = 'FAILED TO LOAD DATA — RETRYING...';
       if (!lbRetryTimer) {
         lbRetryTimer = setTimeout(() => {
