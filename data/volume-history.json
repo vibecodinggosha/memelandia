@@ -39,6 +39,11 @@
    "date": "2026-07-04",
    "vol": 249,
    "src": "gt-h24"
+  },
+  {
+   "date": "2026-07-05",
+   "vol": 290,
+   "src": "gt-h24"
   }
  ],
  "EQA6t28UniHhfdXLf4CrdW8oR4RpE7WULd9IuugX8FscLhLn": [
@@ -81,6 +86,11 @@
    "date": "2026-07-04",
    "vol": 1959,
    "src": "gt-h24"
+  },
+  {
+   "date": "2026-07-05",
+   "vol": 1952,
+   "src": "gt-h24"
   }
  ],
  "EQA60Fa8RTvHct9PQvxvh-1gMiRsFCRErsg5YKsHdkACRy8S": [
@@ -116,6 +126,11 @@
   },
   {
    "date": "2026-07-04",
+   "vol": 2,
+   "src": "gt-h24"
+  },
+  {
+   "date": "2026-07-05",
    "vol": 2,
    "src": "gt-h24"
   }
@@ -160,6 +175,11 @@
    "date": "2026-07-04",
    "vol": 6684,
    "src": "gt-h24"
+  },
+  {
+   "date": "2026-07-05",
+   "vol": 10668,
+   "src": "gt-h24"
   }
  ],
  "EQA6lk2GdC4uosxR0T-ydAqvazkxxlOSjGbouHLj2TWJRDmZ": [
@@ -202,11 +222,51 @@
    "date": "2026-07-04",
    "vol": 175,
    "src": "gt-h24"
+  },
+  {
+   "date": "2026-07-05",
+   "vol": 185,
+   "src": "gt-h24"
   }
  ],
  "EQCQ7EU7td3ITY4AR_I-U-Q-KhJn1BrmnwS8W0Fz0qEbetLu": [
   {
+   "date": "2026-06-24",
+   "vol": 45,
+   "src": "gt-ohlcv"
+  },
+  {
+   "date": "2026-06-25",
+   "vol": 115,
+   "src": "gt-ohlcv"
+  },
+  {
+   "date": "2026-06-26",
+   "vol": 24,
+   "src": "gt-ohlcv"
+  },
+  {
+   "date": "2026-06-27",
+   "vol": 234,
+   "src": "gt-ohlcv"
+  },
+  {
+   "date": "2026-06-28",
+   "vol": 121,
+   "src": "gt-ohlcv"
+  },
+  {
+   "date": "2026-06-30",
+   "vol": 394,
+   "src": "gt-ohlcv"
+  },
+  {
    "date": "2026-07-04",
+   "vol": 72,
+   "src": "gt-h24"
+  },
+  {
+   "date": "2026-07-05",
    "vol": 72,
    "src": "gt-h24"
   }
@@ -251,11 +311,56 @@
    "date": "2026-07-04",
    "vol": 420,
    "src": "gt-h24"
+  },
+  {
+   "date": "2026-07-05",
+   "vol": 349,
+   "src": "gt-h24"
   }
  ],
  "EQA6D_09XfX9wHBJJZxCiyt3N24LOIcrYjXp6OqScWxoV4Sb": [
   {
+   "date": "2026-06-27",
+   "vol": 1413,
+   "src": "gt-ohlcv"
+  },
+  {
+   "date": "2026-06-28",
+   "vol": 40,
+   "src": "gt-ohlcv"
+  },
+  {
+   "date": "2026-06-29",
+   "vol": 191,
+   "src": "gt-ohlcv"
+  },
+  {
+   "date": "2026-06-30",
+   "vol": 621,
+   "src": "gt-ohlcv"
+  },
+  {
+   "date": "2026-07-01",
+   "vol": 28,
+   "src": "gt-ohlcv"
+  },
+  {
+   "date": "2026-07-02",
+   "vol": 48,
+   "src": "gt-ohlcv"
+  },
+  {
+   "date": "2026-07-03",
+   "vol": 207,
+   "src": "gt-ohlcv"
+  },
+  {
    "date": "2026-07-04",
+   "vol": 161,
+   "src": "gt-h24"
+  },
+  {
+   "date": "2026-07-05",
    "vol": 161,
    "src": "gt-h24"
   }
@@ -300,12 +405,52 @@
    "date": "2026-07-04",
    "vol": 196,
    "src": "gt-h24"
+  },
+  {
+   "date": "2026-07-05",
+   "vol": 201,
+   "src": "gt-h24"
   }
  ],
  "EQDjvPHOvpnoyHRISFWkRtA3U15yE6QI7jZ3iDG1PHWjiaq5": [
   {
+   "date": "2026-06-28",
+   "vol": 443,
+   "src": "gt-ohlcv"
+  },
+  {
+   "date": "2026-06-29",
+   "vol": 476,
+   "src": "gt-ohlcv"
+  },
+  {
+   "date": "2026-06-30",
+   "vol": 346,
+   "src": "gt-ohlcv"
+  },
+  {
+   "date": "2026-07-01",
+   "vol": 768,
+   "src": "gt-ohlcv"
+  },
+  {
+   "date": "2026-07-02",
+   "vol": 458,
+   "src": "gt-ohlcv"
+  },
+  {
+   "date": "2026-07-03",
+   "vol": 1428,
+   "src": "gt-ohlcv"
+  },
+  {
    "date": "2026-07-04",
    "vol": 1909,
+   "src": "gt-h24"
+  },
+  {
+   "date": "2026-07-05",
+   "vol": 734,
    "src": "gt-h24"
   }
  ],
@@ -349,12 +494,59 @@
    "date": "2026-07-04",
    "vol": 4417,
    "src": "gt-h24"
+  },
+  {
+   "date": "2026-07-05",
+   "vol": 4185,
+   "src": "gt-h24"
   }
  ],
  "EQAmvp1Vrr0zY2--STdH-0X_mP5iCD61p2vNVJYwHlgBni2C": [
   {
+   "date": "2026-06-28",
+   "vol": 1476,
+   "src": "gt-ohlcv"
+  },
+  {
+   "date": "2026-06-29",
+   "vol": 21084,
+   "src": "gt-ohlcv"
+  },
+  {
+   "date": "2026-06-30",
+   "vol": 11496,
+   "src": "gt-ohlcv"
+  },
+  {
+   "date": "2026-07-01",
+   "vol": 9406,
+   "src": "gt-ohlcv"
+  },
+  {
+   "date": "2026-07-02",
+   "vol": 20747,
+   "src": "gt-ohlcv"
+  },
+  {
+   "date": "2026-07-03",
+   "vol": 18915,
+   "src": "gt-ohlcv"
+  },
+  {
    "date": "2026-07-04",
    "vol": 9365,
+   "src": "gt-h24"
+  },
+  {
+   "date": "2026-07-05",
+   "vol": 14398,
+   "src": "gt-h24"
+  }
+ ],
+ "EQA6FNQzTeFvY395QVg5GhKNexiK4hECAmBbfuLY5TXyvCX2": [
+  {
+   "date": "2026-07-05",
+   "vol": 54,
    "src": "gt-h24"
   }
  ]
