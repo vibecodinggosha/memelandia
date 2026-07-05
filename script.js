@@ -264,6 +264,11 @@ function nextResultsTs() {
   let target = Date.UTC(+parts.year, parts.month - 1, +parts.day, 15, 0, 0)
              - offMin * 60000 + daysAhead * 86400000;
   if (target <= now.getTime()) target += 7 * 86400000;
+
+  // First round ends 12 Jul 2026 15:00 CEST — skip this week's Sunday,
+  // then continue weekly.
+  const FIRST_RESULTS = Date.UTC(2026, 6, 12, 13, 0, 0);
+  if (target < FIRST_RESULTS) target = FIRST_RESULTS;
   return target;
 }
 
