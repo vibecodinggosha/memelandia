@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
   <title>ZHGUNLANDIA</title>
-  <link rel="stylesheet" href="styles.css?v=11" />
+  <link rel="stylesheet" href="styles.css?v=12" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Inter:wght@900&display=swap" rel="stylesheet" />
@@ -140,6 +140,16 @@
     <button class="panel__close" aria-label="Close">✕</button>
     <h2 class="panel__title">RISE TO THE <span class="rainbow">TOP</span> 🏆</h2>
     <p class="lb-formula">MCAP 50% · VOL 7D 30% · HOLDERS 20%</p>
+    <div class="lb-fund">
+      <div class="lb-fund__title">🏆 PRIZE FUND 🏆</div>
+      <div class="lb-fund__total" id="lbFundTotal">—</div>
+      <div class="lb-fund__split">
+        <span class="lb-fund__chip" id="lbPrize1">🥇 50%</span>
+        <span class="lb-fund__chip" id="lbPrize2">🥈 30%</span>
+        <span class="lb-fund__chip" id="lbPrize3">🥉 20%</span>
+      </div>
+      <div class="lb-fund__timer">RESULTS IN <b id="lbTimer">—</b> · SUNDAY 15:00 CET</div>
+    </div>
     <div class="lb-loading" id="lbLoading">LOADING DATA...</div>
     <div class="lb-list" id="lbList"></div>
     <div class="lb-updated" id="lbUpdated"></div>
@@ -272,6 +282,6 @@
     </div>
   </div>
 
-  <script src="script.js?v=11"></script>
+  <script src="script.js?v=12"></script>
 </body>
 </html>

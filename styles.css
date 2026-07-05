@@ -531,6 +531,66 @@ a { text-decoration: none; color: inherit; }
 .lb-item { cursor: pointer; transition: background 0.15s; }
 .lb-item:hover { background: #f2f2f2; }
 
+/* ========== PRIZE FUND ========== */
+.lb-fund {
+  background: #111;
+  border-radius: 16px;
+  padding: 16px 14px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  text-align: center;
+}
+
+.lb-fund__title {
+  font-family: 'Space Mono', monospace;
+  font-size: 0.62rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  color: rgba(255, 255, 255, 0.65);
+  text-transform: uppercase;
+}
+
+.lb-fund__total {
+  font-family: 'Inter', sans-serif;
+  font-weight: 900;
+  font-size: 1.7rem;
+  line-height: 1;
+  background: linear-gradient(90deg, #6ee86e, #4db8ff, #a855f7, #fb923c, #facc15);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.lb-fund__split {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 8px;
+}
+
+.lb-fund__chip {
+  font-family: 'Space Mono', monospace;
+  font-size: 0.62rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  color: #fff;
+  border: 1.5px solid rgba(255, 255, 255, 0.28);
+  border-radius: 50px;
+  padding: 6px 12px;
+  white-space: nowrap;
+}
+
+.lb-fund__timer {
+  font-family: 'Space Mono', monospace;
+  font-size: 0.6rem;
+  letter-spacing: 0.1em;
+  color: rgba(255, 255, 255, 0.55);
+  text-transform: uppercase;
+}
+.lb-fund__timer b { color: #fff; font-weight: 700; }
+
 /* ========== TOKEN DETAIL SHEET ========== */
 .lb-sheet-backdrop {
   display: none;
