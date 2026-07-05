@@ -216,6 +216,74 @@ const TOKENS = [
 /* Hidden from the leaderboard by token symbol (accents ignored: KOTÉ → KOTE) */
 const LB_EXCLUDE = ['KOTE', 'SKITTY'];
 
+/* Wallet whose GRAM balance forms the weekly prize fund (split 50/30/20) */
+const PRIZE_WALLET = 'UQBgKrxmTXfFQvvmlyU95kuRqkjsX5YNyCBFMfX0DMaUJcgG';
+
+async function loadPrizeFund() {
+  // GRAM jetton balance of the prize wallet; falls back to the wallet's
+  // native TON balance while it holds no GRAM.
+  const [jettons, account] = await Promise.all([
+    fetchJson(`https://tonapi.io/v2/accounts/${PRIZE_WALLET}/jettons`),
+    fetchJson(`https://tonapi.io/v2/accounts/${PRIZE_WALLET}`),
+  ]);
+
+  let total = 0, unit = '';
+  const gram = jettons?.balances?.find(x => (x.jetton?.symbol || '').toUpperCase() === 'GRAM');
+  if (gram && Number(gram.balance) > 0) {
+    total = Number(gram.balance) / Math.pow(10, gram.jetton.decimals ?? 9);
+    unit  = 'GRAM';
+  } else if (account && Number(account.balance) > 0) {
+    total = Number(account.balance) / 1e9; // nanoTON
+    unit  = 'TON';
+  }
+  if (!Number.isFinite(total) || total <= 0) return;
+
+  document.getElementById('lbFundTotal').textContent = fmt(total) + ' ' + unit;
+  document.getElementById('lbPrize1').textContent = '🥇 ' + fmt(total * 0.5) + ' ' + unit;
+  document.getElementById('lbPrize2').textContent = '🥈 ' + fmt(total * 0.3) + ' ' + unit;
+  document.getElementById('lbPrize3').textContent = '🥉 ' + fmt(total * 0.2) + ' ' + unit;
+}
+
+/* Next Sunday 15:00 Central European time (CET/CEST via Europe/Berlin) as UTC ms */
+function nextResultsTs() {
+  const now   = new Date();
+  const parts = new Intl.DateTimeFormat('en-US', {
+    timeZone: 'Europe/Berlin', hour12: false,
+    year: 'numeric', month: 'numeric', day: 'numeric',
+    hour: 'numeric', weekday: 'short', timeZoneName: 'shortOffset',
+  }).formatToParts(now).reduce((o, p) => { o[p.type] = p.value; return o; }, {});
+
+  let offMin = 120;
+  const m = /GMT([+-])(\d+)(?::(\d+))?/.exec(parts.timeZoneName || '');
+  if (m) offMin = (m[1] === '-' ? -1 : 1) * (parseInt(m[2], 10) * 60 + parseInt(m[3] || '0', 10));
+
+  const dow       = { Sun: 0, Mon: 1, Tue: 2, Wed: 3, Thu: 4, Fri: 5, Sat: 6 }[parts.weekday] ?? 0;
+  const daysAhead = (7 - dow) % 7;
+
+  // Berlin wall-clock 15:00 on that day, converted to UTC
+  let target = Date.UTC(+parts.year, parts.month - 1, +parts.day, 15, 0, 0)
+             - offMin * 60000 + daysAhead * 86400000;
+  if (target <= now.getTime()) target += 7 * 86400000;
+  return target;
+}
+
+const lbTimerEl = document.getElementById('lbTimer');
+if (lbTimerEl) {
+  let resultsAt = nextResultsTs();
+  const pad2 = n => String(n).padStart(2, '0');
+  const tick = () => {
+    let ms = resultsAt - Date.now();
+    if (ms <= 0) { resultsAt = nextResultsTs(); ms = resultsAt - Date.now(); }
+    const d = Math.floor(ms / 86400000);
+    const h = Math.floor(ms / 3600000) % 24;
+    const mi = Math.floor(ms / 60000) % 60;
+    const s = Math.floor(ms / 1000) % 60;
+    lbTimerEl.textContent = `${d}D ${pad2(h)}:${pad2(mi)}:${pad2(s)}`;
+  };
+  tick();
+  setInterval(tick, 1000);
+}
+
 function normName(s) {
   return String(s).normalize('NFD').replace(/[\u0300-\u036f]/g, '').toUpperCase().trim();
 }
@@ -264,6 +332,8 @@ function renderRows(rows, when) {
 }
 
 async function loadLeaderboard() {
+  loadPrizeFund();
+
   const lbLoading = document.getElementById('lbLoading');
   const lbList    = document.getElementById('lbList');
 
