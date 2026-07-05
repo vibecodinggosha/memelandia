@@ -220,16 +220,28 @@ const LB_EXCLUDE = ['KOTE', 'SKITTY'];
 const PRIZE_WALLET = 'UQBgKrxmTXfFQvvmlyU95kuRqkjsX5YNyCBFMfX0DMaUJcgG';
 
 async function loadPrizeFund() {
-  const j = await fetchJson(`https://tonapi.io/v2/accounts/${PRIZE_WALLET}/jettons`);
-  const b = j?.balances?.find(x => (x.jetton?.symbol || '').toUpperCase() === 'GRAM');
-  if (!b) return;
-  const dec   = b.jetton.decimals ?? 9;
-  const total = Number(b.balance) / Math.pow(10, dec);
-  if (!Number.isFinite(total)) return;
-  document.getElementById('lbFundTotal').textContent = fmt(total) + ' GRAM';
-  document.getElementById('lbPrize1').textContent = '🥇 ' + fmt(total * 0.5) + ' GRAM';
-  document.getElementById('lbPrize2').textContent = '🥈 ' + fmt(total * 0.3) + ' GRAM';
-  document.getElementById('lbPrize3').textContent = '🥉 ' + fmt(total * 0.2) + ' GRAM';
+  // GRAM jetton balance of the prize wallet; falls back to the wallet's
+  // native TON balance while it holds no GRAM.
+  const [jettons, account] = await Promise.all([
+    fetchJson(`https://tonapi.io/v2/accounts/${PRIZE_WALLET}/jettons`),
+    fetchJson(`https://tonapi.io/v2/accounts/${PRIZE_WALLET}`),
+  ]);
+
+  let total = 0, unit = '';
+  const gram = jettons?.balances?.find(x => (x.jetton?.symbol || '').toUpperCase() === 'GRAM');
+  if (gram && Number(gram.balance) > 0) {
+    total = Number(gram.balance) / Math.pow(10, gram.jetton.decimals ?? 9);
+    unit  = 'GRAM';
+  } else if (account && Number(account.balance) > 0) {
+    total = Number(account.balance) / 1e9; // nanoTON
+    unit  = 'TON';
+  }
+  if (!Number.isFinite(total) || total <= 0) return;
+
+  document.getElementById('lbFundTotal').textContent = fmt(total) + ' ' + unit;
+  document.getElementById('lbPrize1').textContent = '🥇 ' + fmt(total * 0.5) + ' ' + unit;
+  document.getElementById('lbPrize2').textContent = '🥈 ' + fmt(total * 0.3) + ' ' + unit;
+  document.getElementById('lbPrize3').textContent = '🥉 ' + fmt(total * 0.2) + ' ' + unit;
 }
 
 /* Next Sunday 15:00 Central European time (CET/CEST via Europe/Berlin) as UTC ms */
