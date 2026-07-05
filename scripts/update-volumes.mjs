@@ -153,7 +153,12 @@ async function main() {
         const j = await getJson(`https://tonapi.io/v2/jettons/${encodeURIComponent(addr)}`);
         let logo = j?.metadata?.image || '';
         if (logo.startsWith('ipfs://')) logo = 'https://ipfs.io/ipfs/' + logo.slice(7);
-        meta[addr] = { holders: j?.holders_count || 0, logo };
+        meta[addr] = {
+          holders: j?.holders_count || 0,
+          logo,
+          name:   j?.metadata?.name   || '',
+          symbol: j?.metadata?.symbol || '',
+        };
         break;
       } catch (e) {
         if (attempt) console.log(`tonapi failed for ${addr}: ${e.message}`);
