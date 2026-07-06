@@ -1,11 +1,6 @@
 {
  "EQA6nxLSnCkr9lKWg6sdBiPxU33xkaZc-A-fu7qwhRaej12-": [
   {
-   "date": "2026-06-27",
-   "vol": 1359,
-   "src": "gt-ohlcv"
-  },
-  {
    "date": "2026-06-28",
    "vol": 2387,
    "src": "gt-ohlcv"
@@ -44,14 +39,14 @@
    "date": "2026-07-05",
    "vol": 251,
    "src": "gt-h24"
+  },
+  {
+   "date": "2026-07-06",
+   "vol": 1810,
+   "src": "gt-h24"
   }
  ],
  "EQA6t28UniHhfdXLf4CrdW8oR4RpE7WULd9IuugX8FscLhLn": [
-  {
-   "date": "2026-06-27",
-   "vol": 242,
-   "src": "gt-ohlcv"
-  },
   {
    "date": "2026-06-28",
    "vol": 234,
@@ -90,6 +85,11 @@
   {
    "date": "2026-07-05",
    "vol": 790,
+   "src": "gt-h24"
+  },
+  {
+   "date": "2026-07-06",
+   "vol": 763,
    "src": "gt-h24"
   }
  ],
@@ -133,14 +133,14 @@
    "date": "2026-07-05",
    "vol": 0,
    "src": "gt-h24"
+  },
+  {
+   "date": "2026-07-06",
+   "vol": 33,
+   "src": "gt-h24"
   }
  ],
  "EQBfrmOdSsdLOk1tizzx37JKoAW7G0LHOvt0Zb8pVnk57rAJ": [
-  {
-   "date": "2026-06-27",
-   "vol": 5089,
-   "src": "gt-ohlcv"
-  },
   {
    "date": "2026-06-28",
    "vol": 7976,
@@ -180,14 +180,14 @@
    "date": "2026-07-05",
    "vol": 10847,
    "src": "gt-h24"
+  },
+  {
+   "date": "2026-07-06",
+   "vol": 7844,
+   "src": "gt-h24"
   }
  ],
  "EQA6lk2GdC4uosxR0T-ydAqvazkxxlOSjGbouHLj2TWJRDmZ": [
-  {
-   "date": "2026-06-27",
-   "vol": 146,
-   "src": "gt-ohlcv"
-  },
   {
    "date": "2026-06-28",
    "vol": 9,
@@ -226,6 +226,11 @@
   {
    "date": "2026-07-05",
    "vol": 119,
+   "src": "gt-h24"
+  },
+  {
+   "date": "2026-07-06",
+   "vol": 120,
    "src": "gt-h24"
   }
  ],
@@ -269,14 +274,14 @@
    "date": "2026-07-05",
    "vol": 256,
    "src": "gt-h24"
+  },
+  {
+   "date": "2026-07-06",
+   "vol": 256,
+   "src": "gt-h24"
   }
  ],
  "EQCwvVKjYvXaNJkPCK8c80CBd1xzx2r1hwOhKHbIFnSaT4dP": [
-  {
-   "date": "2026-06-27",
-   "vol": 128,
-   "src": "gt-ohlcv"
-  },
   {
    "date": "2026-06-28",
    "vol": 443,
@@ -316,14 +321,14 @@
    "date": "2026-07-05",
    "vol": 258,
    "src": "gt-h24"
+  },
+  {
+   "date": "2026-07-06",
+   "vol": 44,
+   "src": "gt-h24"
   }
  ],
  "EQA6D_09XfX9wHBJJZxCiyt3N24LOIcrYjXp6OqScWxoV4Sb": [
-  {
-   "date": "2026-06-27",
-   "vol": 1413,
-   "src": "gt-ohlcv"
-  },
   {
    "date": "2026-06-28",
    "vol": 40,
@@ -363,14 +368,14 @@
    "date": "2026-07-05",
    "vol": 163,
    "src": "gt-h24"
+  },
+  {
+   "date": "2026-07-06",
+   "vol": 169,
+   "src": "gt-h24"
   }
  ],
  "EQA6bzaGz8jyWoqk272WrnJeeXXnT4X4x3o12MZ1Yk3Ee5YE": [
-  {
-   "date": "2026-06-27",
-   "vol": 273,
-   "src": "gt-ohlcv"
-  },
   {
    "date": "2026-06-28",
    "vol": 244,
@@ -409,6 +414,11 @@
   {
    "date": "2026-07-05",
    "vol": 787,
+   "src": "gt-h24"
+  },
+  {
+   "date": "2026-07-06",
+   "vol": 783,
    "src": "gt-h24"
   }
  ],
@@ -452,14 +462,14 @@
    "date": "2026-07-05",
    "vol": 343,
    "src": "gt-h24"
+  },
+  {
+   "date": "2026-07-06",
+   "vol": 297,
+   "src": "gt-h24"
   }
  ],
  "EQA6ulHH35svS8QQz0l5EetinJLSHAFKHRMJ2E7Ax14Rluc2": [
-  {
-   "date": "2026-06-27",
-   "vol": 48646,
-   "src": "gt-ohlcv"
-  },
   {
    "date": "2026-06-28",
    "vol": 7052,
@@ -498,6 +508,11 @@
   {
    "date": "2026-07-05",
    "vol": 7222,
+   "src": "gt-h24"
+  },
+  {
+   "date": "2026-07-06",
+   "vol": 8553,
    "src": "gt-h24"
   }
  ],
@@ -541,6 +556,11 @@
    "date": "2026-07-05",
    "vol": 23071,
    "src": "gt-h24"
+  },
+  {
+   "date": "2026-07-06",
+   "vol": 17129,
+   "src": "gt-h24"
   }
  ],
  "EQA6FNQzTeFvY395QVg5GhKNexiK4hECAmBbfuLY5TXyvCX2": [
@@ -581,6 +601,11 @@
   },
   {
    "date": "2026-07-05",
+   "vol": 0,
+   "src": "gt-h24"
+  },
+  {
+   "date": "2026-07-06",
    "vol": 0,
    "src": "gt-h24"
   }
