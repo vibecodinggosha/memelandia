@@ -1,23 +1,23 @@
 {
- "updated": "2026-07-19T13:56:28.328Z",
+ "updated": "2026-07-19T19:35:41.762Z",
  "vol7d": {
-  "EQA6nxLSnCkr9lKWg6sdBiPxU33xkaZc-A-fu7qwhRaej12-": 2541,
-  "EQA6t28UniHhfdXLf4CrdW8oR4RpE7WULd9IuugX8FscLhLn": 2587,
+  "EQA6nxLSnCkr9lKWg6sdBiPxU33xkaZc-A-fu7qwhRaej12-": 2333,
+  "EQA6t28UniHhfdXLf4CrdW8oR4RpE7WULd9IuugX8FscLhLn": 2578,
   "EQA60Fa8RTvHct9PQvxvh-1gMiRsFCRErsg5YKsHdkACRy8S": 164,
-  "EQBfrmOdSsdLOk1tizzx37JKoAW7G0LHOvt0Zb8pVnk57rAJ": 12061,
+  "EQBfrmOdSsdLOk1tizzx37JKoAW7G0LHOvt0Zb8pVnk57rAJ": 12049,
   "EQA6lk2GdC4uosxR0T-ydAqvazkxxlOSjGbouHLj2TWJRDmZ": 508,
-  "EQCQ7EU7td3ITY4AR_I-U-Q-KhJn1BrmnwS8W0Fz0qEbetLu": 183,
-  "EQCwvVKjYvXaNJkPCK8c80CBd1xzx2r1hwOhKHbIFnSaT4dP": 2249,
-  "EQA6D_09XfX9wHBJJZxCiyt3N24LOIcrYjXp6OqScWxoV4Sb": 391,
-  "EQA6bzaGz8jyWoqk272WrnJeeXXnT4X4x3o12MZ1Yk3Ee5YE": 8759,
-  "EQDjvPHOvpnoyHRISFWkRtA3U15yE6QI7jZ3iDG1PHWjiaq5": 9427,
-  "EQA6ulHH35svS8QQz0l5EetinJLSHAFKHRMJ2E7Ax14Rluc2": 1149,
-  "EQAmvp1Vrr0zY2--STdH-0X_mP5iCD61p2vNVJYwHlgBni2C": 21537,
+  "EQCQ7EU7td3ITY4AR_I-U-Q-KhJn1BrmnwS8W0Fz0qEbetLu": 148,
+  "EQCwvVKjYvXaNJkPCK8c80CBd1xzx2r1hwOhKHbIFnSaT4dP": 2258,
+  "EQA6D_09XfX9wHBJJZxCiyt3N24LOIcrYjXp6OqScWxoV4Sb": 385,
+  "EQA6bzaGz8jyWoqk272WrnJeeXXnT4X4x3o12MZ1Yk3Ee5YE": 8628,
+  "EQDjvPHOvpnoyHRISFWkRtA3U15yE6QI7jZ3iDG1PHWjiaq5": 9123,
+  "EQA6ulHH35svS8QQz0l5EetinJLSHAFKHRMJ2E7Ax14Rluc2": 1155,
+  "EQAmvp1Vrr0zY2--STdH-0X_mP5iCD61p2vNVJYwHlgBni2C": 20909,
   "EQA6FNQzTeFvY395QVg5GhKNexiK4hECAmBbfuLY5TXyvCX2": 26
  },
  "meta": {
   "EQA6nxLSnCkr9lKWg6sdBiPxU33xkaZc-A-fu7qwhRaej12-": {
-   "holders": 1612,
+   "holders": 1613,
    "logo": "https://ipfs.io/ipfs/bafkreidjdqicnsoel2wuqnhjs4mr52ipkdqi2ot5du3scgqm6vnynmmila",
    "name": "Daisy Romashka",
    "symbol": "DAISYROMASHKA"
@@ -35,13 +35,13 @@
    "symbol": "HEDGEHOGE"
   },
   "EQBfrmOdSsdLOk1tizzx37JKoAW7G0LHOvt0Zb8pVnk57rAJ": {
-   "holders": 233,
+   "holders": 232,
    "logo": "https://i.postimg.cc/DZGqN9r8/shadowskitty.jpg",
    "name": "Shadow Kitty",
    "symbol": "SKITTY"
   },
   "EQA6lk2GdC4uosxR0T-ydAqvazkxxlOSjGbouHLj2TWJRDmZ": {
-   "holders": 76,
+   "holders": 75,
    "logo": "https://ipfs.io/ipfs/bafkreidfwqishcx6gro6vihkqzmugqqhvhgzq23uab6ukejl5gfkhpzove",
    "name": "Gold Fish",
    "symbol": "GOLDFISH"
@@ -53,31 +53,25 @@
    "symbol": "SquidGame"
   },
   "EQCwvVKjYvXaNJkPCK8c80CBd1xzx2r1hwOhKHbIFnSaT4dP": {
-   "holders": 150,
+   "holders": 151,
    "logo": "https://iili.io/JgmOO91.md.png",
    "name": "чык чырык",
    "symbol": "$CHYK"
   },
+  "EQA6D_09XfX9wHBJJZxCiyt3N24LOIcrYjXp6OqScWxoV4Sb": {
+   "holders": 63,
+   "logo": "https://ipfs.io/ipfs/bafkreidobqqkjhqceejepkoru7ljgkirenst5wgy5y3wacnvejuvl3gabu",
+   "name": "Flamy Cat",
+   "symbol": "FLAMYCAT"
+  },
   "EQA6bzaGz8jyWoqk272WrnJeeXXnT4X4x3o12MZ1Yk3Ee5YE": {
-   "holders": 152,
+   "holders": 136,
    "logo": "https://ipfs.io/ipfs/bafkreiaoxhcoggdfgbkei6vlyqahwxbemfcjymau3xg3sqhphfzjuman5a",
    "name": "Robin",
    "symbol": "ROBIN"
   },
-  "EQDjvPHOvpnoyHRISFWkRtA3U15yE6QI7jZ3iDG1PHWjiaq5": {
-   "holders": 223,
-   "logo": "https://i.ibb.co/bRCTvhWC/photo.jpg",
-   "name": "Baby Shark",
-   "symbol": "BABYSHARK"
-  },
-  "EQA6ulHH35svS8QQz0l5EetinJLSHAFKHRMJ2E7Ax14Rluc2": {
-   "holders": 110,
-   "logo": "https://ipfs.io/ipfs/QmbZ5hfFFM24rkppXPhe8tX9ozuo1x1LxE7yK2jFkD851Z",
-   "name": "ТАЛИСМАНЫ КОМАНДЫ РОССИИ",
-   "symbol": "ТКР"
-  },
   "EQAmvp1Vrr0zY2--STdH-0X_mP5iCD61p2vNVJYwHlgBni2C": {
-   "holders": 227,
+   "holders": 225,
    "logo": "https://ipfs.io/ipfs/QmYbC4Cp78vfNTb9Eh21MbEUzr3wjkU1v6469F7C22cjVL",
    "name": "koté ",
    "symbol": "KOTÉ"
