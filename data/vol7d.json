@@ -1,29 +1,29 @@
 {
- "updated": "2026-07-22T19:47:20.402Z",
+ "updated": "2026-07-23T03:48:43.327Z",
  "vol7d": {
-  "EQA6nxLSnCkr9lKWg6sdBiPxU33xkaZc-A-fu7qwhRaej12-": 2195,
+  "EQA6nxLSnCkr9lKWg6sdBiPxU33xkaZc-A-fu7qwhRaej12-": 1896,
   "EQA6t28UniHhfdXLf4CrdW8oR4RpE7WULd9IuugX8FscLhLn": 938,
-  "EQA60Fa8RTvHct9PQvxvh-1gMiRsFCRErsg5YKsHdkACRy8S": 166,
-  "EQBfrmOdSsdLOk1tizzx37JKoAW7G0LHOvt0Zb8pVnk57rAJ": 18438,
-  "EQA6lk2GdC4uosxR0T-ydAqvazkxxlOSjGbouHLj2TWJRDmZ": 629,
-  "EQCQ7EU7td3ITY4AR_I-U-Q-KhJn1BrmnwS8W0Fz0qEbetLu": 94,
-  "EQCwvVKjYvXaNJkPCK8c80CBd1xzx2r1hwOhKHbIFnSaT4dP": 2309,
-  "EQA6D_09XfX9wHBJJZxCiyt3N24LOIcrYjXp6OqScWxoV4Sb": 735,
-  "EQA6bzaGz8jyWoqk272WrnJeeXXnT4X4x3o12MZ1Yk3Ee5YE": 8525,
-  "EQDjvPHOvpnoyHRISFWkRtA3U15yE6QI7jZ3iDG1PHWjiaq5": 13827,
-  "EQA6ulHH35svS8QQz0l5EetinJLSHAFKHRMJ2E7Ax14Rluc2": 1318,
-  "EQAmvp1Vrr0zY2--STdH-0X_mP5iCD61p2vNVJYwHlgBni2C": 29589,
-  "EQA6FNQzTeFvY395QVg5GhKNexiK4hECAmBbfuLY5TXyvCX2": 32
+  "EQA60Fa8RTvHct9PQvxvh-1gMiRsFCRErsg5YKsHdkACRy8S": 148,
+  "EQBfrmOdSsdLOk1tizzx37JKoAW7G0LHOvt0Zb8pVnk57rAJ": 23290,
+  "EQA6lk2GdC4uosxR0T-ydAqvazkxxlOSjGbouHLj2TWJRDmZ": 764,
+  "EQCQ7EU7td3ITY4AR_I-U-Q-KhJn1BrmnwS8W0Fz0qEbetLu": 123,
+  "EQCwvVKjYvXaNJkPCK8c80CBd1xzx2r1hwOhKHbIFnSaT4dP": 2381,
+  "EQA6D_09XfX9wHBJJZxCiyt3N24LOIcrYjXp6OqScWxoV4Sb": 766,
+  "EQA6bzaGz8jyWoqk272WrnJeeXXnT4X4x3o12MZ1Yk3Ee5YE": 8624,
+  "EQDjvPHOvpnoyHRISFWkRtA3U15yE6QI7jZ3iDG1PHWjiaq5": 14385,
+  "EQA6ulHH35svS8QQz0l5EetinJLSHAFKHRMJ2E7Ax14Rluc2": 1271,
+  "EQAmvp1Vrr0zY2--STdH-0X_mP5iCD61p2vNVJYwHlgBni2C": 33633,
+  "EQA6FNQzTeFvY395QVg5GhKNexiK4hECAmBbfuLY5TXyvCX2": 266
  },
  "meta": {
   "EQA6nxLSnCkr9lKWg6sdBiPxU33xkaZc-A-fu7qwhRaej12-": {
-   "holders": 1613,
+   "holders": 1620,
    "logo": "https://ipfs.io/ipfs/bafkreidjdqicnsoel2wuqnhjs4mr52ipkdqi2ot5du3scgqm6vnynmmila",
    "name": "Daisy Romashka",
    "symbol": "DAISYROMASHKA"
   },
   "EQA6t28UniHhfdXLf4CrdW8oR4RpE7WULd9IuugX8FscLhLn": {
-   "holders": 142,
+   "holders": 140,
    "logo": "https://ipfs.io/ipfs/bafkreiclqwdi67somxwduyoc3hgymvwbpgmrhxwe2dyrb37aqzazpi243a",
    "name": "Helium Hearts",
    "symbol": "HH"
@@ -35,19 +35,19 @@
    "symbol": "HEDGEHOGE"
   },
   "EQBfrmOdSsdLOk1tizzx37JKoAW7G0LHOvt0Zb8pVnk57rAJ": {
-   "holders": 252,
+   "holders": 261,
    "logo": "https://i.postimg.cc/DZGqN9r8/shadowskitty.jpg",
    "name": "Shadow Kitty",
    "symbol": "SKITTY"
   },
   "EQA6lk2GdC4uosxR0T-ydAqvazkxxlOSjGbouHLj2TWJRDmZ": {
-   "holders": 79,
+   "holders": 78,
    "logo": "https://ipfs.io/ipfs/bafkreidfwqishcx6gro6vihkqzmugqqhvhgzq23uab6ukejl5gfkhpzove",
    "name": "Gold Fish",
    "symbol": "GOLDFISH"
   },
   "EQCQ7EU7td3ITY4AR_I-U-Q-KhJn1BrmnwS8W0Fz0qEbetLu": {
-   "holders": 143,
+   "holders": 142,
    "logo": "https://i.postimg.cc/Y0WL4qrm/logo.png",
    "name": "SquidGame",
    "symbol": "SquidGame"
@@ -58,29 +58,29 @@
    "name": "чык чырык",
    "symbol": "$CHYK"
   },
+  "EQA6D_09XfX9wHBJJZxCiyt3N24LOIcrYjXp6OqScWxoV4Sb": {
+   "holders": 64,
+   "logo": "https://ipfs.io/ipfs/bafkreidobqqkjhqceejepkoru7ljgkirenst5wgy5y3wacnvejuvl3gabu",
+   "name": "Flamy Cat",
+   "symbol": "FLAMYCAT"
+  },
   "EQA6bzaGz8jyWoqk272WrnJeeXXnT4X4x3o12MZ1Yk3Ee5YE": {
-   "holders": 124,
+   "holders": 127,
    "logo": "https://ipfs.io/ipfs/bafkreiaoxhcoggdfgbkei6vlyqahwxbemfcjymau3xg3sqhphfzjuman5a",
    "name": "Robin",
    "symbol": "ROBIN"
   },
-  "EQDjvPHOvpnoyHRISFWkRtA3U15yE6QI7jZ3iDG1PHWjiaq5": {
-   "holders": 220,
-   "logo": "https://i.ibb.co/bRCTvhWC/photo.jpg",
-   "name": "Baby Shark",
-   "symbol": "BABYSHARK"
-  },
-  "EQA6ulHH35svS8QQz0l5EetinJLSHAFKHRMJ2E7Ax14Rluc2": {
-   "holders": 107,
-   "logo": "https://ipfs.io/ipfs/QmbZ5hfFFM24rkppXPhe8tX9ozuo1x1LxE7yK2jFkD851Z",
-   "name": "ТАЛИСМАНЫ КОМАНДЫ РОССИИ",
-   "symbol": "ТКР"
-  },
   "EQAmvp1Vrr0zY2--STdH-0X_mP5iCD61p2vNVJYwHlgBni2C": {
-   "holders": 227,
+   "holders": 231,
    "logo": "https://ipfs.io/ipfs/QmYbC4Cp78vfNTb9Eh21MbEUzr3wjkU1v6469F7C22cjVL",
    "name": "koté ",
    "symbol": "KOTÉ"
+  },
+  "EQA6FNQzTeFvY395QVg5GhKNexiK4hECAmBbfuLY5TXyvCX2": {
+   "holders": 189,
+   "logo": "https://ipfs.io/ipfs/QmPS1uRPGcNimGMdbctzNypBKJQbwdqvDpc5Hs27yKhBLg",
+   "name": "Putin's Last Term",
+   "symbol": "PUTIN"
   }
  }
 }
