@@ -1,11 +1,6 @@
 {
  "EQA6nxLSnCkr9lKWg6sdBiPxU33xkaZc-A-fu7qwhRaej12-": [
   {
-   "date": "2026-07-15",
-   "vol": 8,
-   "src": "gt-h24"
-  },
-  {
    "date": "2026-07-16",
    "vol": 522,
    "src": "gt-h24"
@@ -44,14 +39,14 @@
    "date": "2026-07-23",
    "vol": 107,
    "src": "gt-h24"
+  },
+  {
+   "date": "2026-07-24",
+   "vol": 113,
+   "src": "gt-h24"
   }
  ],
  "EQA6t28UniHhfdXLf4CrdW8oR4RpE7WULd9IuugX8FscLhLn": [
-  {
-   "date": "2026-07-15",
-   "vol": 1010,
-   "src": "gt-h24"
-  },
   {
    "date": "2026-07-16",
    "vol": 194,
@@ -91,14 +86,14 @@
    "date": "2026-07-23",
    "vol": 120,
    "src": "gt-h24"
+  },
+  {
+   "date": "2026-07-24",
+   "vol": 115,
+   "src": "gt-h24"
   }
  ],
  "EQA60Fa8RTvHct9PQvxvh-1gMiRsFCRErsg5YKsHdkACRy8S": [
-  {
-   "date": "2026-07-15",
-   "vol": 0,
-   "src": "gt-h24"
-  },
   {
    "date": "2026-07-16",
    "vol": 40,
@@ -138,14 +133,14 @@
    "date": "2026-07-23",
    "vol": 0,
    "src": "gt-h24"
+  },
+  {
+   "date": "2026-07-24",
+   "vol": 0,
+   "src": "gt-h24"
   }
  ],
  "EQBfrmOdSsdLOk1tizzx37JKoAW7G0LHOvt0Zb8pVnk57rAJ": [
-  {
-   "date": "2026-07-15",
-   "vol": 599,
-   "src": "gt-h24"
-  },
   {
    "date": "2026-07-16",
    "vol": 1552,
@@ -185,14 +180,14 @@
    "date": "2026-07-23",
    "vol": 12643,
    "src": "gt-h24"
+  },
+  {
+   "date": "2026-07-24",
+   "vol": 18099,
+   "src": "gt-h24"
   }
  ],
  "EQA6lk2GdC4uosxR0T-ydAqvazkxxlOSjGbouHLj2TWJRDmZ": [
-  {
-   "date": "2026-07-15",
-   "vol": 14,
-   "src": "gt-h24"
-  },
   {
    "date": "2026-07-16",
    "vol": 0,
@@ -232,14 +227,14 @@
    "date": "2026-07-23",
    "vol": 180,
    "src": "gt-h24"
+  },
+  {
+   "date": "2026-07-24",
+   "vol": 187,
+   "src": "gt-h24"
   }
  ],
  "EQCQ7EU7td3ITY4AR_I-U-Q-KhJn1BrmnwS8W0Fz0qEbetLu": [
-  {
-   "date": "2026-07-15",
-   "vol": 0,
-   "src": "gt-h24"
-  },
   {
    "date": "2026-07-16",
    "vol": 0,
@@ -279,14 +274,14 @@
    "date": "2026-07-23",
    "vol": 21,
    "src": "gt-h24"
+  },
+  {
+   "date": "2026-07-24",
+   "vol": 0,
+   "src": "gt-h24"
   }
  ],
  "EQCwvVKjYvXaNJkPCK8c80CBd1xzx2r1hwOhKHbIFnSaT4dP": [
-  {
-   "date": "2026-07-15",
-   "vol": 0,
-   "src": "gt-h24"
-  },
   {
    "date": "2026-07-16",
    "vol": 115,
@@ -326,14 +321,14 @@
    "date": "2026-07-23",
    "vol": 171,
    "src": "gt-h24"
+  },
+  {
+   "date": "2026-07-24",
+   "vol": 262,
+   "src": "gt-h24"
   }
  ],
  "EQA6D_09XfX9wHBJJZxCiyt3N24LOIcrYjXp6OqScWxoV4Sb": [
-  {
-   "date": "2026-07-15",
-   "vol": 0,
-   "src": "gt-h24"
-  },
   {
    "date": "2026-07-16",
    "vol": 0,
@@ -373,14 +368,14 @@
    "date": "2026-07-23",
    "vol": 37,
    "src": "gt-h24"
+  },
+  {
+   "date": "2026-07-24",
+   "vol": 35,
+   "src": "gt-h24"
   }
  ],
  "EQA6bzaGz8jyWoqk272WrnJeeXXnT4X4x3o12MZ1Yk3Ee5YE": [
-  {
-   "date": "2026-07-15",
-   "vol": 804,
-   "src": "gt-h24"
-  },
   {
    "date": "2026-07-16",
    "vol": 196,
@@ -420,14 +415,14 @@
    "date": "2026-07-23",
    "vol": 221,
    "src": "gt-h24"
+  },
+  {
+   "date": "2026-07-24",
+   "vol": 751,
+   "src": "gt-h24"
   }
  ],
  "EQDjvPHOvpnoyHRISFWkRtA3U15yE6QI7jZ3iDG1PHWjiaq5": [
-  {
-   "date": "2026-07-15",
-   "vol": 2127,
-   "src": "gt-h24"
-  },
   {
    "date": "2026-07-16",
    "vol": 1265,
@@ -467,14 +462,14 @@
    "date": "2026-07-23",
    "vol": 1340,
    "src": "gt-h24"
+  },
+  {
+   "date": "2026-07-24",
+   "vol": 1220,
+   "src": "gt-h24"
   }
  ],
  "EQA6ulHH35svS8QQz0l5EetinJLSHAFKHRMJ2E7Ax14Rluc2": [
-  {
-   "date": "2026-07-15",
-   "vol": 109,
-   "src": "gt-h24"
-  },
   {
    "date": "2026-07-16",
    "vol": 146,
@@ -514,14 +509,14 @@
    "date": "2026-07-23",
    "vol": 66,
    "src": "gt-h24"
+  },
+  {
+   "date": "2026-07-24",
+   "vol": 33,
+   "src": "gt-h24"
   }
  ],
  "EQAmvp1Vrr0zY2--STdH-0X_mP5iCD61p2vNVJYwHlgBni2C": [
-  {
-   "date": "2026-07-15",
-   "vol": 2829,
-   "src": "gt-h24"
-  },
   {
    "date": "2026-07-16",
    "vol": 4847,
@@ -561,14 +556,14 @@
    "date": "2026-07-23",
    "vol": 7299,
    "src": "gt-h24"
+  },
+  {
+   "date": "2026-07-24",
+   "vol": 4804,
+   "src": "gt-h24"
   }
  ],
  "EQA6FNQzTeFvY395QVg5GhKNexiK4hECAmBbfuLY5TXyvCX2": [
-  {
-   "date": "2026-07-15",
-   "vol": 0,
-   "src": "gt-h24"
-  },
   {
    "date": "2026-07-16",
    "vol": 0,
@@ -607,6 +602,11 @@
   {
    "date": "2026-07-23",
    "vol": 241,
+   "src": "gt-h24"
+  },
+  {
+   "date": "2026-07-24",
+   "vol": 8,
    "src": "gt-h24"
   }
  ]
