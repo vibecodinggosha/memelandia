@@ -1,18 +1,18 @@
 {
- "updated": "2026-08-26T02:00:43.425Z",
+ "updated": "2026-08-26T07:11:10.802Z",
  "vol7d": {
   "EQA6nxLSnCkr9lKWg6sdBiPxU33xkaZc-A-fu7qwhRaej12-": 580,
-  "EQA6t28UniHhfdXLf4CrdW8oR4RpE7WULd9IuugX8FscLhLn": 176,
+  "EQA6t28UniHhfdXLf4CrdW8oR4RpE7WULd9IuugX8FscLhLn": 115,
   "EQA60Fa8RTvHct9PQvxvh-1gMiRsFCRErsg5YKsHdkACRy8S": 95,
-  "EQBfrmOdSsdLOk1tizzx37JKoAW7G0LHOvt0Zb8pVnk57rAJ": 28999,
+  "EQBfrmOdSsdLOk1tizzx37JKoAW7G0LHOvt0Zb8pVnk57rAJ": 29564,
   "EQA6lk2GdC4uosxR0T-ydAqvazkxxlOSjGbouHLj2TWJRDmZ": 15,
-  "EQCQ7EU7td3ITY4AR_I-U-Q-KhJn1BrmnwS8W0Fz0qEbetLu": 23,
+  "EQCQ7EU7td3ITY4AR_I-U-Q-KhJn1BrmnwS8W0Fz0qEbetLu": 61,
   "EQCwvVKjYvXaNJkPCK8c80CBd1xzx2r1hwOhKHbIFnSaT4dP": 453,
   "EQA6D_09XfX9wHBJJZxCiyt3N24LOIcrYjXp6OqScWxoV4Sb": 1497,
   "EQA6bzaGz8jyWoqk272WrnJeeXXnT4X4x3o12MZ1Yk3Ee5YE": 1575,
   "EQDjvPHOvpnoyHRISFWkRtA3U15yE6QI7jZ3iDG1PHWjiaq5": 2621,
   "EQA6ulHH35svS8QQz0l5EetinJLSHAFKHRMJ2E7Ax14Rluc2": 33,
-  "EQAmvp1Vrr0zY2--STdH-0X_mP5iCD61p2vNVJYwHlgBni2C": 64958,
+  "EQAmvp1Vrr0zY2--STdH-0X_mP5iCD61p2vNVJYwHlgBni2C": 64351,
   "EQA6FNQzTeFvY395QVg5GhKNexiK4hECAmBbfuLY5TXyvCX2": 77
  },
  "meta": {
@@ -47,7 +47,7 @@
    "symbol": "GOLDFISH"
   },
   "EQCQ7EU7td3ITY4AR_I-U-Q-KhJn1BrmnwS8W0Fz0qEbetLu": {
-   "holders": 146,
+   "holders": 147,
    "logo": "https://i.postimg.cc/Y0WL4qrm/logo.png",
    "name": "SquidGame",
    "symbol": "SquidGame"
@@ -70,11 +70,11 @@
    "name": "Robin",
    "symbol": "ROBIN"
   },
-  "EQAmvp1Vrr0zY2--STdH-0X_mP5iCD61p2vNVJYwHlgBni2C": {
-   "holders": 431,
-   "logo": "https://ipfs.io/ipfs/QmYbC4Cp78vfNTb9Eh21MbEUzr3wjkU1v6469F7C22cjVL",
-   "name": "koté ",
-   "symbol": "KOTÉ"
+  "EQDjvPHOvpnoyHRISFWkRtA3U15yE6QI7jZ3iDG1PHWjiaq5": {
+   "holders": 207,
+   "logo": "https://i.ibb.co/bRCTvhWC/photo.jpg",
+   "name": "Baby Shark",
+   "symbol": "BABYSHARK"
   },
   "EQA6FNQzTeFvY395QVg5GhKNexiK4hECAmBbfuLY5TXyvCX2": {
    "holders": 187,
