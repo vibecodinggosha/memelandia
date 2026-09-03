@@ -1,29 +1,29 @@
 {
- "updated": "2026-09-03T11:21:43.526Z",
+ "updated": "2026-09-03T16:30:12.497Z",
  "vol7d": {
-  "EQA6nxLSnCkr9lKWg6sdBiPxU33xkaZc-A-fu7qwhRaej12-": 303,
-  "EQA6t28UniHhfdXLf4CrdW8oR4RpE7WULd9IuugX8FscLhLn": 115,
+  "EQA6nxLSnCkr9lKWg6sdBiPxU33xkaZc-A-fu7qwhRaej12-": 367,
+  "EQA6t28UniHhfdXLf4CrdW8oR4RpE7WULd9IuugX8FscLhLn": 117,
   "EQA60Fa8RTvHct9PQvxvh-1gMiRsFCRErsg5YKsHdkACRy8S": 1,
-  "EQBfrmOdSsdLOk1tizzx37JKoAW7G0LHOvt0Zb8pVnk57rAJ": 18407,
-  "EQA6lk2GdC4uosxR0T-ydAqvazkxxlOSjGbouHLj2TWJRDmZ": 68,
-  "EQCQ7EU7td3ITY4AR_I-U-Q-KhJn1BrmnwS8W0Fz0qEbetLu": 311,
+  "EQBfrmOdSsdLOk1tizzx37JKoAW7G0LHOvt0Zb8pVnk57rAJ": 18731,
+  "EQA6lk2GdC4uosxR0T-ydAqvazkxxlOSjGbouHLj2TWJRDmZ": 71,
+  "EQCQ7EU7td3ITY4AR_I-U-Q-KhJn1BrmnwS8W0Fz0qEbetLu": 337,
   "EQCwvVKjYvXaNJkPCK8c80CBd1xzx2r1hwOhKHbIFnSaT4dP": 114,
-  "EQA6D_09XfX9wHBJJZxCiyt3N24LOIcrYjXp6OqScWxoV4Sb": 200,
-  "EQA6bzaGz8jyWoqk272WrnJeeXXnT4X4x3o12MZ1Yk3Ee5YE": 445,
+  "EQA6D_09XfX9wHBJJZxCiyt3N24LOIcrYjXp6OqScWxoV4Sb": 168,
+  "EQA6bzaGz8jyWoqk272WrnJeeXXnT4X4x3o12MZ1Yk3Ee5YE": 547,
   "EQDjvPHOvpnoyHRISFWkRtA3U15yE6QI7jZ3iDG1PHWjiaq5": 2813,
   "EQA6ulHH35svS8QQz0l5EetinJLSHAFKHRMJ2E7Ax14Rluc2": 61,
-  "EQAmvp1Vrr0zY2--STdH-0X_mP5iCD61p2vNVJYwHlgBni2C": 50943,
-  "EQA6FNQzTeFvY395QVg5GhKNexiK4hECAmBbfuLY5TXyvCX2": 27
+  "EQAmvp1Vrr0zY2--STdH-0X_mP5iCD61p2vNVJYwHlgBni2C": 49480,
+  "EQA6FNQzTeFvY395QVg5GhKNexiK4hECAmBbfuLY5TXyvCX2": 30
  },
  "meta": {
   "EQA6nxLSnCkr9lKWg6sdBiPxU33xkaZc-A-fu7qwhRaej12-": {
-   "holders": 1610,
+   "holders": 1609,
    "logo": "https://ipfs.io/ipfs/bafkreidjdqicnsoel2wuqnhjs4mr52ipkdqi2ot5du3scgqm6vnynmmila",
    "name": "Daisy Romashka",
    "symbol": "DAISYROMASHKA"
   },
   "EQA6t28UniHhfdXLf4CrdW8oR4RpE7WULd9IuugX8FscLhLn": {
-   "holders": 144,
+   "holders": 143,
    "logo": "https://ipfs.io/ipfs/bafkreiclqwdi67somxwduyoc3hgymvwbpgmrhxwe2dyrb37aqzazpi243a",
    "name": "Helium Hearts",
    "symbol": "HH"
@@ -47,7 +47,7 @@
    "symbol": "GOLDFISH"
   },
   "EQCQ7EU7td3ITY4AR_I-U-Q-KhJn1BrmnwS8W0Fz0qEbetLu": {
-   "holders": 147,
+   "holders": 146,
    "logo": "https://i.postimg.cc/Y0WL4qrm/logo.png",
    "name": "SquidGame",
    "symbol": "SquidGame"
@@ -65,19 +65,13 @@
    "symbol": "FLAMYCAT"
   },
   "EQA6bzaGz8jyWoqk272WrnJeeXXnT4X4x3o12MZ1Yk3Ee5YE": {
-   "holders": 128,
+   "holders": 129,
    "logo": "https://ipfs.io/ipfs/bafkreiaoxhcoggdfgbkei6vlyqahwxbemfcjymau3xg3sqhphfzjuman5a",
    "name": "Robin",
    "symbol": "ROBIN"
   },
-  "EQA6ulHH35svS8QQz0l5EetinJLSHAFKHRMJ2E7Ax14Rluc2": {
-   "holders": 78,
-   "logo": "https://ipfs.io/ipfs/QmbZ5hfFFM24rkppXPhe8tX9ozuo1x1LxE7yK2jFkD851Z",
-   "name": "ТАЛИСМАНЫ КОМАНДЫ РОССИИ",
-   "symbol": "ТКР"
-  },
   "EQAmvp1Vrr0zY2--STdH-0X_mP5iCD61p2vNVJYwHlgBni2C": {
-   "holders": 430,
+   "holders": 438,
    "logo": "https://ipfs.io/ipfs/QmYbC4Cp78vfNTb9Eh21MbEUzr3wjkU1v6469F7C22cjVL",
    "name": "koté ",
    "symbol": "KOTÉ"
