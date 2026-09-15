@@ -1,5 +1,5 @@
 {
- "updated": "2026-09-15T11:51:10.892Z",
+ "updated": "2026-09-15T17:05:14.804Z",
  "vol7d": {
   "EQA6nxLSnCkr9lKWg6sdBiPxU33xkaZc-A-fu7qwhRaej12-": 58,
   "EQA6t28UniHhfdXLf4CrdW8oR4RpE7WULd9IuugX8FscLhLn": 9,
@@ -17,13 +17,13 @@
  },
  "meta": {
   "EQA6nxLSnCkr9lKWg6sdBiPxU33xkaZc-A-fu7qwhRaej12-": {
-   "holders": 1598,
+   "holders": 1603,
    "logo": "https://ipfs.io/ipfs/bafkreidjdqicnsoel2wuqnhjs4mr52ipkdqi2ot5du3scgqm6vnynmmila",
    "name": "Daisy Romashka",
    "symbol": "DAISYROMASHKA"
   },
   "EQA6t28UniHhfdXLf4CrdW8oR4RpE7WULd9IuugX8FscLhLn": {
-   "holders": 139,
+   "holders": 138,
    "logo": "https://ipfs.io/ipfs/bafkreiclqwdi67somxwduyoc3hgymvwbpgmrhxwe2dyrb37aqzazpi243a",
    "name": "Helium Hearts",
    "symbol": "HH"
@@ -35,7 +35,7 @@
    "symbol": "HEDGEHOGE"
   },
   "EQBfrmOdSsdLOk1tizzx37JKoAW7G0LHOvt0Zb8pVnk57rAJ": {
-   "holders": 354,
+   "holders": 353,
    "logo": "https://i.postimg.cc/DZGqN9r8/shadowskitty.jpg",
    "name": "Shadow Kitty",
    "symbol": "SKITTY"
@@ -76,8 +76,20 @@
    "name": "Baby Shark",
    "symbol": "BABYSHARK"
   },
+  "EQA6ulHH35svS8QQz0l5EetinJLSHAFKHRMJ2E7Ax14Rluc2": {
+   "holders": 77,
+   "logo": "https://ipfs.io/ipfs/QmbZ5hfFFM24rkppXPhe8tX9ozuo1x1LxE7yK2jFkD851Z",
+   "name": "ТАЛИСМАНЫ КОМАНДЫ РОССИИ",
+   "symbol": "ТКР"
+  },
+  "EQAmvp1Vrr0zY2--STdH-0X_mP5iCD61p2vNVJYwHlgBni2C": {
+   "holders": 433,
+   "logo": "https://ipfs.io/ipfs/QmYbC4Cp78vfNTb9Eh21MbEUzr3wjkU1v6469F7C22cjVL",
+   "name": "koté ",
+   "symbol": "KOTÉ"
+  },
   "EQA6FNQzTeFvY395QVg5GhKNexiK4hECAmBbfuLY5TXyvCX2": {
-   "holders": 183,
+   "holders": 182,
    "logo": "https://ipfs.io/ipfs/QmPS1uRPGcNimGMdbctzNypBKJQbwdqvDpc5Hs27yKhBLg",
    "name": "Putin's Last Term",
    "symbol": "PUTIN"
