@@ -1,18 +1,18 @@
 {
- "updated": "2026-11-08T22:13:13.178Z",
+ "updated": "2026-11-09T06:45:55.821Z",
  "vol7d": {
   "EQA6nxLSnCkr9lKWg6sdBiPxU33xkaZc-A-fu7qwhRaej12-": 33,
-  "EQA6t28UniHhfdXLf4CrdW8oR4RpE7WULd9IuugX8FscLhLn": 16,
-  "EQA60Fa8RTvHct9PQvxvh-1gMiRsFCRErsg5YKsHdkACRy8S": 435,
-  "EQBfrmOdSsdLOk1tizzx37JKoAW7G0LHOvt0Zb8pVnk57rAJ": 6799,
-  "EQA6lk2GdC4uosxR0T-ydAqvazkxxlOSjGbouHLj2TWJRDmZ": 33,
-  "EQCQ7EU7td3ITY4AR_I-U-Q-KhJn1BrmnwS8W0Fz0qEbetLu": 20,
+  "EQA6t28UniHhfdXLf4CrdW8oR4RpE7WULd9IuugX8FscLhLn": 29,
+  "EQA60Fa8RTvHct9PQvxvh-1gMiRsFCRErsg5YKsHdkACRy8S": 621,
+  "EQBfrmOdSsdLOk1tizzx37JKoAW7G0LHOvt0Zb8pVnk57rAJ": 7002,
+  "EQA6lk2GdC4uosxR0T-ydAqvazkxxlOSjGbouHLj2TWJRDmZ": 15,
+  "EQCQ7EU7td3ITY4AR_I-U-Q-KhJn1BrmnwS8W0Fz0qEbetLu": 10,
   "EQCwvVKjYvXaNJkPCK8c80CBd1xzx2r1hwOhKHbIFnSaT4dP": 16,
-  "EQA6D_09XfX9wHBJJZxCiyt3N24LOIcrYjXp6OqScWxoV4Sb": 199,
-  "EQA6bzaGz8jyWoqk272WrnJeeXXnT4X4x3o12MZ1Yk3Ee5YE": 613,
-  "EQDjvPHOvpnoyHRISFWkRtA3U15yE6QI7jZ3iDG1PHWjiaq5": 191,
-  "EQA6ulHH35svS8QQz0l5EetinJLSHAFKHRMJ2E7Ax14Rluc2": 8,
-  "EQAmvp1Vrr0zY2--STdH-0X_mP5iCD61p2vNVJYwHlgBni2C": 5414,
+  "EQA6D_09XfX9wHBJJZxCiyt3N24LOIcrYjXp6OqScWxoV4Sb": 213,
+  "EQA6bzaGz8jyWoqk272WrnJeeXXnT4X4x3o12MZ1Yk3Ee5YE": 372,
+  "EQDjvPHOvpnoyHRISFWkRtA3U15yE6QI7jZ3iDG1PHWjiaq5": 200,
+  "EQA6ulHH35svS8QQz0l5EetinJLSHAFKHRMJ2E7Ax14Rluc2": 72,
+  "EQAmvp1Vrr0zY2--STdH-0X_mP5iCD61p2vNVJYwHlgBni2C": 4246,
   "EQA6FNQzTeFvY395QVg5GhKNexiK4hECAmBbfuLY5TXyvCX2": 0
  },
  "meta": {
@@ -41,7 +41,7 @@
    "symbol": "SKITTY"
   },
   "EQA6lk2GdC4uosxR0T-ydAqvazkxxlOSjGbouHLj2TWJRDmZ": {
-   "holders": 63,
+   "holders": 64,
    "logo": "https://ipfs.io/ipfs/bafkreidfwqishcx6gro6vihkqzmugqqhvhgzq23uab6ukejl5gfkhpzove",
    "name": "Gold Fish",
    "symbol": "GOLDFISH"
@@ -65,13 +65,19 @@
    "symbol": "FLAMYCAT"
   },
   "EQA6bzaGz8jyWoqk272WrnJeeXXnT4X4x3o12MZ1Yk3Ee5YE": {
-   "holders": 119,
+   "holders": 120,
    "logo": "https://ipfs.io/ipfs/bafkreiaoxhcoggdfgbkei6vlyqahwxbemfcjymau3xg3sqhphfzjuman5a",
    "name": "Robin",
    "symbol": "ROBIN"
   },
+  "EQDjvPHOvpnoyHRISFWkRtA3U15yE6QI7jZ3iDG1PHWjiaq5": {
+   "holders": 185,
+   "logo": "https://i.ibb.co/bRCTvhWC/photo.jpg",
+   "name": "Baby Shark",
+   "symbol": "BABYSHARK"
+  },
   "EQA6ulHH35svS8QQz0l5EetinJLSHAFKHRMJ2E7Ax14Rluc2": {
-   "holders": 71,
+   "holders": 66,
    "logo": "https://ipfs.io/ipfs/QmbZ5hfFFM24rkppXPhe8tX9ozuo1x1LxE7yK2jFkD851Z",
    "name": "ТАЛИСМАНЫ КОМАНДЫ РОССИИ",
    "symbol": "ТКР"
