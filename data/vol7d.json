@@ -1,18 +1,18 @@
 {
- "updated": "2026-11-14T22:31:34.544Z",
+ "updated": "2026-11-15T06:43:34.424Z",
  "vol7d": {
-  "EQA6nxLSnCkr9lKWg6sdBiPxU33xkaZc-A-fu7qwhRaej12-": 482,
-  "EQA6t28UniHhfdXLf4CrdW8oR4RpE7WULd9IuugX8FscLhLn": 136,
-  "EQA60Fa8RTvHct9PQvxvh-1gMiRsFCRErsg5YKsHdkACRy8S": 1369,
-  "EQBfrmOdSsdLOk1tizzx37JKoAW7G0LHOvt0Zb8pVnk57rAJ": 8702,
+  "EQA6nxLSnCkr9lKWg6sdBiPxU33xkaZc-A-fu7qwhRaej12-": 528,
+  "EQA6t28UniHhfdXLf4CrdW8oR4RpE7WULd9IuugX8FscLhLn": 123,
+  "EQA60Fa8RTvHct9PQvxvh-1gMiRsFCRErsg5YKsHdkACRy8S": 1698,
+  "EQBfrmOdSsdLOk1tizzx37JKoAW7G0LHOvt0Zb8pVnk57rAJ": 9083,
   "EQA6lk2GdC4uosxR0T-ydAqvazkxxlOSjGbouHLj2TWJRDmZ": 9,
   "EQCQ7EU7td3ITY4AR_I-U-Q-KhJn1BrmnwS8W0Fz0qEbetLu": 0,
-  "EQCwvVKjYvXaNJkPCK8c80CBd1xzx2r1hwOhKHbIFnSaT4dP": 92,
-  "EQA6D_09XfX9wHBJJZxCiyt3N24LOIcrYjXp6OqScWxoV4Sb": 481,
-  "EQA6bzaGz8jyWoqk272WrnJeeXXnT4X4x3o12MZ1Yk3Ee5YE": 583,
-  "EQDjvPHOvpnoyHRISFWkRtA3U15yE6QI7jZ3iDG1PHWjiaq5": 1758,
+  "EQCwvVKjYvXaNJkPCK8c80CBd1xzx2r1hwOhKHbIFnSaT4dP": 102,
+  "EQA6D_09XfX9wHBJJZxCiyt3N24LOIcrYjXp6OqScWxoV4Sb": 613,
+  "EQA6bzaGz8jyWoqk272WrnJeeXXnT4X4x3o12MZ1Yk3Ee5YE": 618,
+  "EQDjvPHOvpnoyHRISFWkRtA3U15yE6QI7jZ3iDG1PHWjiaq5": 1787,
   "EQA6ulHH35svS8QQz0l5EetinJLSHAFKHRMJ2E7Ax14Rluc2": 72,
-  "EQAmvp1Vrr0zY2--STdH-0X_mP5iCD61p2vNVJYwHlgBni2C": 8858,
+  "EQAmvp1Vrr0zY2--STdH-0X_mP5iCD61p2vNVJYwHlgBni2C": 8896,
   "EQA6FNQzTeFvY395QVg5GhKNexiK4hECAmBbfuLY5TXyvCX2": 21
  },
  "meta": {
@@ -35,7 +35,7 @@
    "symbol": "HEDGEHOGE"
   },
   "EQBfrmOdSsdLOk1tizzx37JKoAW7G0LHOvt0Zb8pVnk57rAJ": {
-   "holders": 370,
+   "holders": 371,
    "logo": "https://i.postimg.cc/DZGqN9r8/shadowskitty.jpg",
    "name": "Shadow Kitty",
    "symbol": "SKITTY"
@@ -53,7 +53,7 @@
    "symbol": "SquidGame"
   },
   "EQCwvVKjYvXaNJkPCK8c80CBd1xzx2r1hwOhKHbIFnSaT4dP": {
-   "holders": 143,
+   "holders": 142,
    "logo": "https://iili.io/JgmOO91.md.png",
    "name": "чык чырык",
    "symbol": "$CHYK"
@@ -69,12 +69,6 @@
    "logo": "https://ipfs.io/ipfs/bafkreiaoxhcoggdfgbkei6vlyqahwxbemfcjymau3xg3sqhphfzjuman5a",
    "name": "Robin",
    "symbol": "ROBIN"
-  },
-  "EQDjvPHOvpnoyHRISFWkRtA3U15yE6QI7jZ3iDG1PHWjiaq5": {
-   "holders": 186,
-   "logo": "https://i.ibb.co/bRCTvhWC/photo.jpg",
-   "name": "Baby Shark",
-   "symbol": "BABYSHARK"
   },
   "EQA6ulHH35svS8QQz0l5EetinJLSHAFKHRMJ2E7Ax14Rluc2": {
    "holders": 66,
