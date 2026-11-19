@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-19T07:33:33.534Z",
+ "updated": "2026-11-19T20:44:07.402Z",
  "vol7d": {
   "EQA6nxLSnCkr9lKWg6sdBiPxU33xkaZc-A-fu7qwhRaej12-": 75,
   "EQA6t28UniHhfdXLf4CrdW8oR4RpE7WULd9IuugX8FscLhLn": 12,
@@ -35,7 +35,7 @@
    "symbol": "HEDGEHOGE"
   },
   "EQBfrmOdSsdLOk1tizzx37JKoAW7G0LHOvt0Zb8pVnk57rAJ": {
-   "holders": 365,
+   "holders": 364,
    "logo": "https://i.postimg.cc/DZGqN9r8/shadowskitty.jpg",
    "name": "Shadow Kitty",
    "symbol": "SKITTY"
@@ -59,7 +59,7 @@
    "symbol": "$CHYK"
   },
   "EQA6D_09XfX9wHBJJZxCiyt3N24LOIcrYjXp6OqScWxoV4Sb": {
-   "holders": 65,
+   "holders": 64,
    "logo": "https://ipfs.io/ipfs/bafkreidobqqkjhqceejepkoru7ljgkirenst5wgy5y3wacnvejuvl3gabu",
    "name": "Flamy Cat",
    "symbol": "FLAMYCAT"
@@ -69,6 +69,12 @@
    "logo": "https://ipfs.io/ipfs/bafkreiaoxhcoggdfgbkei6vlyqahwxbemfcjymau3xg3sqhphfzjuman5a",
    "name": "Robin",
    "symbol": "ROBIN"
+  },
+  "EQDjvPHOvpnoyHRISFWkRtA3U15yE6QI7jZ3iDG1PHWjiaq5": {
+   "holders": 185,
+   "logo": "https://i.ibb.co/bRCTvhWC/photo.jpg",
+   "name": "Baby Shark",
+   "symbol": "BABYSHARK"
   },
   "EQA6ulHH35svS8QQz0l5EetinJLSHAFKHRMJ2E7Ax14Rluc2": {
    "holders": 66,
